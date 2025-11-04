@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      <div className="flex items-center justify-around bg-indigo-500/80 text-white ">
+    <header className="fixed top-0 left-0 w-full z-50 bg-indigo-500/80">
+      <div className="flex items-center justify-around  text-white ">
         <div className="flex items-center">
           <Link to={'/'}>
           <img
