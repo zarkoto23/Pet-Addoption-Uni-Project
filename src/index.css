@@ -1,68 +1,75 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+
+/* 💎 Минималистична пастелна тема */
+@theme {
+ --font-sans: 'Libre Baskerville', serif;
+  /* 🎨 Основна палитра */
+  --color-primary: #a1bfe0;           /* меко пастелно синьо-лилаво */
+  --color-primary-light: #c9dcf0;     /* още по-светъл нюанс */
+  --color-primary-dark: #7fa4cc;      /* малко по-дълбок тон за hover */
+
+  /* 🌸 Акцентен цвят */
+  --color-accent: #f7c8b0;            /* прасковено-розов, мек и топъл */
+  --color-accent-light: #fde3d1;      /* светъл фон за акцент */
+
+  /* ⚪ Неутрали */
+  --color-neutral: #fafafa;           /* почти бял фон */
+  --color-neutral-light: #ffffff;     /* чисто бяло */
+  --color-neutral-dark: #333333;      /* дълбок графитен текст */
+
+  /* 🌿 Второстепенни тонове (за success / warning / error) */
+  --color-success: #b7e4c7;           /* пастелно зелено */
+  --color-warning: #ffe8a3;           /* меко жълто */
+  --color-danger: #f5b8b8;            /* розовочервен, не агресивен */
+
+  /* ✍️ Типография */
+
+  /* 🔲 Радиуси и сенки */
+  --radius-base: 0.5rem;
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* 🌤️ Глобални стилове */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  @apply bg-neutral text-neutral-dark font-sans antialiased;
+  @apply font-sans antialiased;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+/* Фонов елемент */
+.background {
+  position: absolute;         /* ⬅️ вече не влияе на другото съдържание */
+  top: 35vh;                  /* на колко отгоре да започва */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 95vw;
+  height: 110vh;
+
+  background-image: url('11.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  z-index: -1;                /* ⬅️ отива зад текста и другото съдържание */
+  pointer-events: none;
+  user-select: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+
+
+/* Съдържание над фона */
+.content {
+  position: relative;
+  z-index: 1;            /* показва се над фона */
+  color: rgb(170, 29, 29);
+  text-align: center;
+  margin-top: 100px;
+
 }

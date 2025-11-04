@@ -1,11 +1,14 @@
+import Header from "./components/header/Header";
+import Footer from "./components/static-components/Foter";
 
-function App() {
-
+export default function App() {
   return (
     <>
-     
-    </>
-  )
-}
+      <div className="background"></div>
 
-export default App
+      <Header />
+
+      <Footer />
+    </>
+  );
+}
