@@ -14,8 +14,12 @@ export default function Header() {
         </div>
 
         <ul className="flex gap-[40px] text-xl font-semibold">
-          <Link className="relative group">
+          <Link to={'/'} className="relative group">
             Home
+            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+           <Link to='/login' className="relative group">
+          Login
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link className="relative group">

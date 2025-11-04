@@ -1,18 +1,24 @@
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/static-components/Footer";
+import Login from "./components/login/Login";
+
 
 export default function App() {
+
   return (
     <>
+
       <div className="background"></div>
-
       <Header />
+      <Routes>
+          <Route index/>
+          <Route path="/login" element={<Login/>}/>
 
-<div className="min-h-[120vh] flex flex-col">
-  <main className="flex-grow pb-24">
-    {/* съдържание */}
-  </main>
-</div>
+      </Routes>
+
+
+
 
       <Footer/>
 
