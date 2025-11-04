@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-
 export default function Footer() {
   return (
     <footer className="fixed bottom-0 bg-indigo-500/80 w-full">

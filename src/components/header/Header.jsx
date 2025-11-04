@@ -5,21 +5,21 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-50 bg-indigo-500/80">
       <div className="flex items-center justify-around  text-white ">
         <div className="flex items-center">
-          <Link to={'/'}>
-          <img
-            src="icon.png"
-            className="w-30 h-30 object-contain -rotate-30 transition-transform ease-in-out duration-500 transform hover:rotate-0 hover:scale-120"
+          <Link to={"/"}>
+            <img
+              src="icon.png"
+              className="w-30 h-30 object-contain -rotate-30 transition-transform ease-in-out duration-500 transform hover:rotate-0 hover:scale-120"
             />
-            </Link>
+          </Link>
         </div>
 
         <ul className="flex gap-[40px] text-xl font-semibold">
-          <Link to={'/'} className="relative group">
+          <Link to={"/"} className="relative group">
             Home
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </Link>
-           <Link to='/login' className="relative group">
-          Login
+          <Link to="/login" className="relative group">
+            Login
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link className="relative group">
