@@ -20,7 +20,7 @@ export default function Footer() {
           </li>
           <li>
             <Link to="#" className="transition hover:opacity-75 relative group">
-              become a Volunteer
+              Become a Volunteer
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </li>

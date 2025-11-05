@@ -22,8 +22,8 @@ export default function Header() {
             Login
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link className="relative group">
-            Product
+          <Link to='/register' className="relative group">
+            Register
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link className="relative group">
