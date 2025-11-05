@@ -1,6 +1,5 @@
-import React from "react";
 
-const LandingPage = () => {
+export default function Home (){
   return (
     <div className="min-h-screen flex flex-col items-center justify-start pt-42 p-4">
       <div className="text-center mb-8 max-w-4xl">
@@ -95,4 +94,3 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
