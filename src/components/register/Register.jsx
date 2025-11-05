@@ -5,54 +5,46 @@ import { useRegister } from "../../api/authApi";
 import { toast } from "react-toastify";
 
 export default function Register() {
-    const { userLoginHandler } = useContext(UserContext);
-  const nav=useNavigate()
+  const { userLoginHandler } = useContext(UserContext);
+  const nav = useNavigate();
 
   const { register } = useRegister();
 
-  const registerHandler =async (e) => {
+  const registerHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
 
     console.log(data);
-    
-    if(data.password!==data.confirm){
-      e.target.elements.confirm.value=''
-      return toast.error('Paswords not match!')
+
+    if (data.password !== data.confirm) {
+      e.target.elements.confirm.value = "";
+      return toast.error("Paswords not match!");
     }
 
     try {
       const authData = await register(data.email, data.password);
       userLoginHandler(authData);
-      toast.success('Success registration!')
+      toast.success("Success registration!");
 
-
-      nav('/')
-      
+      nav("/");
     } catch (err) {
-      toast.error(err.message||"Login or password don't match!")
-      e.target.reset()
-
-      
+      toast.error(err.message || "Login or password don't match!");
+      e.target.reset();
     }
-
-
-
-    
   };
   return (
     <form
-  onSubmit={registerHandler}
-  className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80 animate-fade-in"
->
+      onSubmit={registerHandler}
+      className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80 animate-fade-in"
+    >
       <div className="w-full ">
         <p>Email</p>
         <input
           placeholder="write yout email"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="email"
-          name='email'
+          name="email"
           required
         />
       </div>
@@ -62,7 +54,7 @@ export default function Register() {
           placeholder="write your password"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="password"
-          name='password'
+          name="password"
           required
         />
       </div>

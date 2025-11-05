@@ -28,10 +28,10 @@ export default function Login() {
   };
 
   return (
-<form
-  onSubmit={loginHandler}
-  className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80 animate-fade-in"
->
+    <form
+      onSubmit={loginHandler}
+      className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80 animate-fade-in"
+    >
       <div className="w-full ">
         <p>Email</p>
         <input

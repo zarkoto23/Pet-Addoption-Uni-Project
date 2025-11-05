@@ -14,37 +14,35 @@ import NotFound from "./components/static-components/NotFound";
 export default function App() {
   return (
     <>
-       <BrowserRouter>
-      <div className="background"></div>
-      <Header />
+      <BrowserRouter>
+        <div className="background"></div>
+        <Header />
 
-      <Routes>
-        <Route index element={<Home/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/volunteer" element={< Volunteer/>} />
-        <Route path="/contact" element={<NotFound />} />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/contact" element={<NotFound />} />
+        </Routes>
 
-
-      </Routes>
-
-      <Footer />
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-        theme="light"
-        transition={Flip}
+        <Footer />
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover
+          theme="light"
+          transition={Flip}
         />
-        </BrowserRouter>
-        </>
+      </BrowserRouter>
+    </>
   );
 }
