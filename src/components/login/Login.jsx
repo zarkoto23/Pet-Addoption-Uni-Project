@@ -1,14 +1,44 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from "../../api/authApi";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { toast } from "react-toastify";
 
 export default function Login() {
+  const { userLoginHandler } = useContext(UserContext);
+  const nav = useNavigate();
+
+  const { login } = useLogin();
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const authData = await login(data.email, data.password);
+      userLoginHandler(authData);
+      toast.success("You are Logged in!");
+
+      nav("/");
+    } catch (err) {
+      toast.error(err.message || "Login or password don't match!");
+      e.target.reset();
+    }
+  };
+
   return (
-    <form className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80">
+<form
+  onSubmit={loginHandler}
+  className="fixed top-50 left-1/2 transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white rounded-lg shadow-xl border border-gray-200 bg-indigo-300/80 animate-fade-in"
+>
       <div className="w-full ">
         <p>Email</p>
         <input
           placeholder="write yout email"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="email"
+          name="email"
           required
         />
       </div>
@@ -18,6 +48,7 @@ export default function Login() {
           placeholder="write your password"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="password"
+          name="password"
           required
         />
       </div>
@@ -29,7 +60,9 @@ export default function Login() {
       </button>
       <p className="text-white">
         You have not registration ?{" "}
-        <Link to={'/register'} className="text-indigo-500 cursor-pointer">click for Register</Link>
+        <Link to={"/register"} className="text-indigo-500 cursor-pointer">
+          click for Register
+        </Link>
       </p>
     </form>
   );
