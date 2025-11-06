@@ -22,7 +22,7 @@ export default function Login() {
 
       nav("/");
     } catch (err) {
-      toast.error(err.message || "Login or password don't match!");
+      toast.error(err.message || "Email or password not match!");
       e.target.reset();
     }
   };

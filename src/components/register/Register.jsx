@@ -29,7 +29,7 @@ export default function Register() {
 
       nav("/");
     } catch (err) {
-      toast.error(err.message || "Login or password don't match!");
+      toast.error(err.message || "Something went wrong!");
       e.target.reset();
     }
   };
