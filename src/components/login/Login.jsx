@@ -20,6 +20,8 @@ export default function Login() {
       userLoginHandler(authData);
       toast.success("You are Logged in!");
 
+      localStorage.setItem('auth',JSON.stringify(authData))
+
       nav("/");
     } catch (err) {
       toast.error(err.message || "Email or password not match!");

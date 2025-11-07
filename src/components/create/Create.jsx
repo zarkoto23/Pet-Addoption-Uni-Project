@@ -1,7 +1,30 @@
+import { Form } from "react-router-dom"
+import { useCreate } from "../../api/petsApi"
+
 export default function Create() {
+  const {create} =useCreate()
+
+
+  const submitCreate=(e)=>{
+    e.preventDefault()
+    const formData=new FormData(e.currentTarget)
+    const data=Object.fromEntries(formData)
+
+    create(data)
+    
+    e.target.reset()
+    
+
+  }
+
+
+
+
+
+
   return (
     <div className="fixed  left-1/2  transform -translate-x-1/2 flex-col items-center justify-start pt-36">
-      <form
+      <form onSubmit={submitCreate}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
         {/* Грид оформление */}
@@ -12,6 +35,7 @@ export default function Create() {
               Name:
             </label>
             <input
+            name="name"
               type="text"
               placeholder="Enter pet's name"
               className="w-full p-2 rounded-md border bg-white border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -24,6 +48,7 @@ export default function Create() {
               Category:
             </label>
             <select
+            name="category"
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
               <option value="dog">Dog</option>
@@ -36,7 +61,8 @@ export default function Create() {
           <div className="col-span-1 md:col-span-2">
             {/* Пол */}
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-2">
+              <label
+              className="block text-gray-700 font-semibold mb-2">
                 Sex:
               </label>
               <div className="flex gap-6">
@@ -96,6 +122,7 @@ export default function Create() {
               Picture:
             </label>
             <input
+            name="imageUrl"
               type="text"
               placeholder="https://example.com/pet.jpg"
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -108,6 +135,7 @@ export default function Create() {
               Description:
             </label>
             <textarea
+            name="description"
               rows="3"
               placeholder="Tell more about the pet"
               className="bg-white w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none resize-none"
@@ -125,12 +153,14 @@ export default function Create() {
                   type="number"
                   min="0"
                   placeholder="Years"
+                  name="years"
                   className="bg-white w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
                 />
               </div>
               <div className="flex-1">
                 <input
                   type="number"
+                  name="months"
                   min="0"
                   max="11"
                   placeholder="Months"

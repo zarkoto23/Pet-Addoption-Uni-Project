@@ -14,6 +14,8 @@ const request = async (method, url, data, options = {}) => {
     };
   }
 
+  console.log(options);
+  
   const response = await fetch(url, options);
   const responseContentType = response.headers.get("Content-Type");
 

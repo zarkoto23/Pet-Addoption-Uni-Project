@@ -22,3 +22,19 @@ export const usePets=()=>{
 
 
 }
+
+
+export const useCreate=()=>{
+
+    const create=(data)=>{
+    const authData = JSON.parse(localStorage.getItem('auth'));
+
+    requester.post(petsUrl ,data, {headers:{'X-Authorization':authData.accessToken} })
+    }
+
+
+    return {
+        create
+    }
+    
+}
