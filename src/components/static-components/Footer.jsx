@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 bg-indigo-500/80 w-full h-20">
+    <footer className="fixed bottom-0 bg-gradient-to-r from-indigo-500/50 via-purple-300/50 to-pink-300/50 w-full h-20">
       <div className="mx-auto max-w-7xl py-2 sm:px-6 lg:px-8 text-center flex flex-col justify-center items-center">
-        <ul className="flex gap-32 text-white mb-4 mt-2">
+        <ul className="flex gap-32 text-grey-500 mb-4 mt-2">
           <li>
             <NavLink
               to="/volunteer"
@@ -40,7 +40,7 @@ export default function Footer() {
           </li>
         </ul>
 
-        <p className="text-xs text-white ">
+        <p className="text-xs text-grey-700 ">
           © 2025 Adopt a Paw. All rights reserved.
         </p>
       </div>

@@ -1,7 +1,7 @@
 
 export default function Home (){
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start pt-42 p-4">
+    <div className="fixed top-80 left-1/2 transform -translate-1/2 flex-col items-center justify-start pt-42 p-4">
       <div className="text-center mb-8 max-w-4xl">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-800 mb-10">
           <div className="overflow-hidden mb-5">

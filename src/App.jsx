@@ -10,6 +10,8 @@ import Contact from "./components/static-components/Contact";
 import About from "./components/static-components/About";
 import Volunteer from "./components/static-components/Volunteer";
 import NotFound from "./components/static-components/NotFound";
+import Catalog from "./components/catalog/Catalog";
+import Create from "./components/create/Create";
 
 export default function App() {
   return (
@@ -21,6 +23,10 @@ export default function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/create" element={<Create />} />
+
+
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />

@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-indigo-500/80 ">
-      <div className="flex items-center justify-around text-white">
+    <header className="fixed backdrop-blur-xs top-0 left-0 w-full z-50 bg-gradient-to-r from-indigo-500/50 via-purple-400/50 to-indigo-400/50 ">
+      <div className="flex items-center justify-around text-grey-500">
         <div className="flex items-center">
           <NavLink to={"/"}>
             <img
@@ -13,7 +13,7 @@ export default function Header() {
           </NavLink>
         </div>
 
-        <ul className="flex gap-[40px] text-xl font-semibold mt-15">
+        <ul className="flex gap-[60px] text-xl font-semibold mt-15">
           <NavLink
             to={"/"}
             className={({ isActive }) =>
@@ -21,6 +21,26 @@ export default function Header() {
             }
           >
             Home
+            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+          </NavLink>
+
+          <NavLink
+            to={"/catalog"}
+            className={({ isActive }) =>
+              `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
+            }
+          >
+            Our Pets/catalog
+            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+          </NavLink>
+
+          <NavLink
+            to={"/create"}
+            className={({ isActive }) =>
+              `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
+            }
+          >
+            Create new
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
 
@@ -41,16 +61,6 @@ export default function Header() {
             }
           >
             Register
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </NavLink>
-
-          <NavLink
-            to={"/toast"}
-            className={({ isActive }) =>
-              `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
-            }
-          >
-            About
             <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
         </ul>

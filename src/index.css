@@ -109,40 +109,55 @@ body {
   animation: toastAnimation 1.5s ease-in-out forwards;
 }
 
-@keyframes toastAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -20px);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-
-  80% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -20px);
-    visibility: hidden;
-  }
-}
-
-@keyframes fadeIn {
+@keyframes fadeInUp {
   from {
+    transform: translateY(30px);
     opacity: 0;
   }
-
   to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 
 .animate-fade-in {
   animation: fadeIn 1s ease-out;
 }
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.bg-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(99, 102, 241, 0.5),   /* indigo-500/50 */
+    rgba(196, 181, 253, 0.5),  /* purple-300/50 */
+    rgba(249, 168, 212, 0.5)   /* pink-300/50 */
+  );
+}
+
 
