@@ -161,3 +161,32 @@ body {
 }
 
 
+.carousel-wrapper {
+  overflow: hidden; /* скрива елементите извън зоната */
+  position: relative;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.6s ease-in-out; /* 🟩 плавна анимация */
+  will-change: transform;
+}
+
+/* 🟩 Позиции за 4 елемента наведнъж */
+.carousel-step-0 {
+  transform: translateX(0%);
+}
+.carousel-step-1 {
+  transform: translateX(-25%);
+}
+.carousel-step-2 {
+  transform: translateX(-50%);
+}
+.carousel-step-3 {
+  transform: translateX(-75%);
+}
+.carousel-step-4 {
+  transform: translateX(-100%);
+}
+/* Ако имаш повече елементи, можеш да добавиш още такива */
