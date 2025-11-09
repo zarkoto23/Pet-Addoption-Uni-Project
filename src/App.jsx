@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 
 import Header from "./components/header/Header";
 import Footer from "./components/static-components/Footer";
@@ -12,11 +12,11 @@ import Volunteer from "./components/static-components/Volunteer";
 import NotFound from "./components/static-components/NotFound";
 import Catalog from "./components/catalog/Catalog";
 import Create from "./components/create/Create";
+import UserProvider from "./components/providers/UserProvider";
 
 export default function App() {
   return (
-    <>
-      <BrowserRouter>
+    <UserProvider>
         <div className="background"></div>
         <Header />
 
@@ -48,7 +48,6 @@ export default function App() {
           theme="light"
           transition={Flip}
         />
-      </BrowserRouter>
-    </>
+    </UserProvider>
   );
 }

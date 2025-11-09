@@ -31,7 +31,7 @@ const request = async (method, url, data, options = {}) => {
 };
 
 export default {
-  get: (url, options) => request("GET", url, options),
+  get: (url, options) => request("GET", url,null, options),
   post: (url, data, options) => request("POST", url, data, options),
   put: (url, data, options) => request("PUT", url, data, options),
   del: (url, options) => request("DELETE", url, null, options),
