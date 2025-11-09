@@ -23,6 +23,22 @@ export const usePets=()=>{
 
 }
 
+export const usePet=(petId)=>{
+    const [pet, setPet]=useState({})
+
+    useEffect(()=>{
+        requester.get(`${petsUrl}/${petId}`
+        )
+        .then(setPet)
+        .catch((err)=>{
+            toast.error(err.message||'Something went wrong')
+        })
+
+    },[petId])
+
+    return pet
+}
+
 
 export const useCreate=()=>{
 

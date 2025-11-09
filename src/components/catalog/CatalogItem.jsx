@@ -1,11 +1,14 @@
-export default function CatalogItem({ pet }) {
+import { useNavigate } from "react-router-dom";
 
-    const onItemHandler=()=>{
-        console.log('click on item ');
+export default function CatalogItem({ pet }) {
+  const navigate=useNavigate()
+
+    const onDetailsClick=()=>{
+       navigate(`details/${pet._id}`)
         
     }
   return (
-    <div onClick={onItemHandler} className="  flex-shrink-0 w-64 bg-white/30 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden transform transition-transform duration-500 hover:-translate-y-6 hover:shadow-xl cursor-pointer ">
+    <div onClick={onDetailsClick} className="  flex-shrink-0 w-64 bg-white/30 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden transform transition-transform duration-500 hover:-translate-y-6 hover:shadow-xl cursor-pointer ">
       {/* Всичко вътре реагира на hover */}
       <div className="transition duration-300 hover:bg-white/80">
         <img
