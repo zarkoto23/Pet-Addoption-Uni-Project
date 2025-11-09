@@ -1,17 +1,32 @@
+import { toast } from "react-toastify"
 import { useCreate } from "../../api/petsApi"
+import { useNavigate } from "react-router-dom"
 
 export default function Create() {
   const {create} =useCreate()
+  const navigate=useNavigate()
 
 
   const submitCreate=(e)=>{
     e.preventDefault()
     const formData=new FormData(e.currentTarget)
-    const data=Object.fromEntries(formData)
+    let data=Object.fromEntries(formData)
 
-    create(data)
+      data = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [key, value.trim()])
+    )
+
+    const hasEmptyFields = Object.values(data).some(value => value.trim() === "")
+
+    if(hasEmptyFields||!data.gender||!data.castrated){
+      toast.error('All fields must be filled!')
+      return
+    }
+
+  create(data)
+
     
-    e.target.reset()
+    navigate('/catalog')
     
 
   }

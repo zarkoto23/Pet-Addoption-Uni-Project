@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import requester from "../utils/requester"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 const petsUrl='http://localhost:3030/data/pets'
 
 
 export const usePets=()=>{
+    const navigate=useNavigate()
     const[pets, setPets]=useState([])
     
 
@@ -14,9 +16,10 @@ export const usePets=()=>{
         .then(setPets)
         .catch((err)=>{
             toast.error(err.message||'Something went wrong!')
+            navigate('/')
         })
         
-    },[])
+    },[navigate])
 
     return {pets}
 
@@ -25,6 +28,7 @@ export const usePets=()=>{
 
 export const usePet=(petId)=>{
     const [pet, setPet]=useState({})
+    const navigate=useNavigate()
 
     useEffect(()=>{
         requester.get(`${petsUrl}/${petId}`
@@ -32,9 +36,11 @@ export const usePet=(petId)=>{
         .then(setPet)
         .catch((err)=>{
             toast.error(err.message||'Something went wrong')
+            navigate('/')
+
         })
 
-    },[petId])
+    },[petId,navigate])
 
     return pet
 }
