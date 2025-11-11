@@ -14,6 +14,7 @@ import Catalog from "./components/catalog/Catalog";
 import Create from "./components/create/Create";
 import UserProvider from "./components/providers/UserProvider";
 import Details from "./components/details/Details";
+import Profile from "./components/profile/Profile";
 
 export default function App() {
   return (
@@ -33,6 +34,9 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/contact" element={<NotFound />} />
+
+          <Route path="/profile" element={<Profile />} />
+
 
 
           <Route path="/catalog/details/:petId" element={<Details />} />

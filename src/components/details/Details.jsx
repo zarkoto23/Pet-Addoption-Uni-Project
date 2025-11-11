@@ -28,7 +28,7 @@ export default function Details() {
 
     {/* ❌ X бутон (горе вдясно) */}
     <button onClick={onCloseHandler}
-      className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-indigo-600 font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
+      className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
       aria-label="Close details"
     >
       ✕
@@ -44,7 +44,7 @@ export default function Details() {
     </div>
 
     {/* 📝 Информация вдясно */}
-    <div className="flex-1 p-12 flex flex-col justify-between h-full overflow-y-auto">
+    <div className="bg-gradient flex-1 p-12 flex flex-col justify-between h-full overflow-y-auto">
       
       <div>
         {/* 🐾 Name */}
