@@ -1,12 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePet } from "../../api/petsApi";
+import { useState } from "react";
 
 export default function Details() {
+  const navigate=useNavigate()
   const {petId}=useParams()
-  
 
   const pet=usePet(petId)
-  console.log(pet.name);
+
+
+  const onCloseHandler =()=>{
+    navigate('/catalog')
+  }
   
   
   
@@ -16,13 +21,13 @@ export default function Details() {
   return (
     Object.keys(pet).length > 0?
 
-    (<div className="min-h-screen flex items-center justify-center bg-white py-10 px-6">
+    (<div onClick={onCloseHandler} className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 ">
 
   {/* Карта с детайлите */}
-  <div className="relative flex flex-col md:flex-row max-w-5xl w-full h-[600px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform">
+  <div onClick={(e)=>e.stopPropagation()} className="relative flex flex-col md:flex-row max-w-5xl w-full h-[600px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform">
 
     {/* ❌ X бутон (горе вдясно) */}
-    <button
+    <button onClick={onCloseHandler}
       className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-indigo-600 font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
       aria-label="Close details"
     >
