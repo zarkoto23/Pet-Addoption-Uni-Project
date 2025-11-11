@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useUserContext } from "../../contexts/UserContext";
-import requester from "../../utils/requester";
+
 import { useLogout } from "../../api/authApi";
 export default function Header() {
 

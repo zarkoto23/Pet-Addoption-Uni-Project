@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 
-export default function Home (){
+export default function Home() {
   return (
     <div className="fixed top-80 left-1/2 transform -translate-1/2 flex-col items-center justify-start pt-42 p-4">
       <div className="text-center mb-8 max-w-4xl">
@@ -38,59 +39,19 @@ export default function Home (){
         </p>
 
         {/* Бутон "Научете повече" със стила от формуляра */}
-        <button
-          style={{
-            animation: "fadeInUp 0.8s ease-out 1s forwards",
-          }}
-          className="group relative bg-indigo-500/80 hover:bg-indigo-600 transition-all text-white w-full max-w-xs py-2 rounded-md cursor-pointer overflow-hidden opacity-0"
-        >
-          Meet Our Pets
-          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-        </button>
+
+ <Link
+  to="/catalog"
+  style={{
+    animation: "fadeInUp 0.8s ease-out 1s forwards",
+  }}
+  className="group relative block mx-auto text-center bg-indigo-500/80 hover:bg-indigo-600 transition-all text-white w-full max-w-xs py-2 rounded-md cursor-pointer overflow-hidden opacity-0"
+>
+  Meet Our Pets
+  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+</Link>
+
       </div>
-
-      <style>
-        {`
-          @keyframes slideInLeft {
-            from {
-              transform: translateX(-100px);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-          
-          @keyframes slideInRight {
-            from {
-              transform: translateX(100px);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-          
-          @keyframes fadeInUp {
-            from {
-              transform: translateY(30px);
-              opacity: 0;
-            }
-            to {
-              transform: translateY(0);
-              opacity: 1;
-            }
-          }
-
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-        `}
-      </style>
     </div>
   );
-};
-
+}
