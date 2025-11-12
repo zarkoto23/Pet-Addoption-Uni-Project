@@ -44,7 +44,8 @@ export default function Details() {
     </div>
 
     {/* 📝 Информация вдясно */}
-    <div className="bg-gradient flex-1 p-12 flex flex-col justify-between h-full overflow-y-auto">
+    <div className="bg-gradient-to-r from-indigo-300/90 via-purple-300/90 to-pink-200/90
+ flex-1 p-12 flex flex-col justify-between h-full overflow-y-auto">
       
       <div>
         {/* 🐾 Name */}

@@ -1,5 +1,5 @@
 import { UserContext } from "../../contexts/UserContext"
-import usePersistedState from "../hooks/usePersistedState"
+import usePersistedState from "../../hooks/usePersistedState"
 
 
 export default function UserProvider({children}) {

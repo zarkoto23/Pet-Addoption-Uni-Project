@@ -6,7 +6,6 @@ import { UserContext } from "../../contexts/UserContext";
 export default function Header() {
   const { logout } = useLogout();
   const { accessToken, email } = useContext(UserContext);
-  console.log("init header");
 
   return (
     <header className="fixed backdrop-blur-xs top-0 left-0 w-full z-50 bg-gradient-to-r from-indigo-500/50 via-purple-400/50 to-indigo-400/50 ">

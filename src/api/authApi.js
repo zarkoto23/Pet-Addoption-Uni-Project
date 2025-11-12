@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import requester from "../utils/requester";
 import { useUserContext } from "../contexts/UserContext";
 import { toast } from "react-toastify";
@@ -57,5 +56,6 @@ export const useLogout = () => {
     navigate("/");
   };
 
-  return { logout };
+  return { 
+    logout, };
 };
