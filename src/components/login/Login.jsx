@@ -22,7 +22,7 @@ export default function Login() {
       toast.success("You are Logged in!");
 
 
-      nav("/");
+      nav("/catalog");
     } catch (err) {
       toast.error(err.message || "Email or password not match!");
       e.target.reset();
