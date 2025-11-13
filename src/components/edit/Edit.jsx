@@ -1,20 +1,42 @@
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useUpdate } from "../../api/petsApi";
 
 export default function Edit() {
+  const { state } = useLocation();
+  const { update } = useUpdate();
+  const pet = state?.pet;
+  const navigate = useNavigate();
 
-    const {state}=useLocation()
-    const pet=state?.pet
-    
+  const onUpdateHandler = async (e) => {
+    e.preventDefault();
 
+    let data = Object.fromEntries(new FormData(e.currentTarget));
 
+    data = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [key, value.trim()])
+    );
 
+    const hasEmptyFields = Object.values(data).some(
+      (value) => value.trim() === ""
+    );
 
+    if (hasEmptyFields || !data.gender || !data.castrated) {
+      toast.error("All fields must be filled!");
+      return;
+    }
 
+    data._id = pet._id;
+
+    const result = await update(data);
+
+    navigate(`/catalog/details/${result?._id}`);
+  };
 
   return (
     <div className="fixed  left-1/2  transform -translate-x-1/2 flex-col items-center justify-start pt-36">
       <form
+        onSubmit={onUpdateHandler}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
         {/* Грид оформление */}
@@ -25,7 +47,7 @@ export default function Edit() {
               Name:
             </label>
             <input
-            name="name"
+              name="name"
               type="text"
               defaultValue={pet?.name}
               className="w-full p-2 rounded-md border bg-white border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -38,7 +60,8 @@ export default function Edit() {
               Category:
             </label>
             <select
-            name="category"
+              name="category"
+              defaultValue={pet?.category}
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
               <option value="dog">Dog</option>
@@ -51,8 +74,7 @@ export default function Edit() {
           <div className="col-span-1 md:col-span-2">
             {/* Пол */}
             <div className="mb-4">
-              <label
-              className="block text-gray-700 font-semibold mb-2">
+              <label className="block text-gray-700 font-semibold mb-2">
                 Sex:
               </label>
               <div className="flex gap-6">
@@ -61,6 +83,7 @@ export default function Edit() {
                     type="radio"
                     name="gender"
                     value="male"
+                    defaultChecked={pet?.gender === "male"}
                     className="accent-indigo-500 w-5 h-5"
                   />
                   <span className="text-gray-700">Male</span>
@@ -70,6 +93,7 @@ export default function Edit() {
                     type="radio"
                     name="gender"
                     value="female"
+                    defaultChecked={pet?.gender === "female"}
                     className="accent-indigo-600 w-5 h-5"
                   />
                   <span className="text-gray-700">Female</span>
@@ -88,6 +112,7 @@ export default function Edit() {
                     type="radio"
                     name="castrated"
                     value="yes"
+                    defaultChecked={pet?.castrated === "yes"}
                     className="accent-indigo-600 w-5 h-5"
                   />
                   <span className="text-gray-700">Yes</span>
@@ -97,8 +122,8 @@ export default function Edit() {
                     type="radio"
                     name="castrated"
                     value="no"
+                    defaultChecked={pet?.castrated === "no"}
                     className="accent-indigo-600 w-5 h-5"
-
                   />
                   <span className="text-gray-700">No</span>
                 </label>
@@ -112,7 +137,7 @@ export default function Edit() {
               Picture:
             </label>
             <input
-            name="imageUrl"
+              name="imageUrl"
               type="text"
               defaultValue={pet?.imageUrl}
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -125,7 +150,7 @@ export default function Edit() {
               Description:
             </label>
             <textarea
-            name="description"
+              name="description"
               rows="3"
               defaultValue={pet?.description}
               className="bg-white w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none resize-none"
@@ -142,7 +167,7 @@ export default function Edit() {
                 <input
                   type="number"
                   min="0"
-                  defaultValue={pet?.year}
+                  defaultValue={pet?.years}
                   name="years"
                   className="bg-white w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
                 />

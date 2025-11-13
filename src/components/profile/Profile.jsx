@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useMyPets } from "../../api/petsApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { email } = useContext(UserContext);
   const [toggle, setToggle] = useState(true);
+  const navigate=useNavigate()
 
   const {myPets}=useMyPets()
   
@@ -64,6 +66,8 @@ export default function Profile() {
             {myPets.map((pet) => (
               <div
                 key={pet._id}
+                onClick={()=>navigate(`/catalog/details/${pet._id}`)}
+
                 className="bg-white/80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-4 mt-4 duration-500 cursor-pointer"
               >
                 <img

@@ -1,44 +1,37 @@
-import { toast } from "react-toastify"
-import { useCreate } from "../../api/petsApi"
-import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
+import { useCreate } from "../../api/petsApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
-  const {create} =useCreate()
-  const navigate=useNavigate()
+  const { create } = useCreate();
+  const navigate = useNavigate();
 
+  const submitCreate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    let data = Object.fromEntries(formData);
 
-  const submitCreate=(e)=>{
-    e.preventDefault()
-    const formData=new FormData(e.currentTarget)
-    let data=Object.fromEntries(formData)
-
-      data = Object.fromEntries(
+    data = Object.fromEntries(
       Object.entries(data).map(([key, value]) => [key, value.trim()])
-    )
+    );
 
-    const hasEmptyFields = Object.values(data).some(value => value.trim() === "")
+    const hasEmptyFields = Object.values(data).some(
+      (value) => value.trim() === ""
+    );
 
-    if(hasEmptyFields||!data.gender||!data.castrated){
-      toast.error('All fields must be filled!')
-      return
+    if (hasEmptyFields || !data.gender || !data.castrated) {
+      toast.error("All fields must be filled!");
+      return;
     }
 
-  create(data)
-
-    
-    navigate('/catalog')
-    
-
-  }
-
-
-
-
-
+    const result = await create(data);
+    navigate(`/catalog/details/${result?._id}`);
+  };
 
   return (
     <div className="fixed  left-1/2  transform -translate-x-1/2 flex-col items-center justify-start pt-36">
-      <form onSubmit={submitCreate}
+      <form
+        onSubmit={submitCreate}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
         {/* Грид оформление */}
@@ -49,7 +42,7 @@ export default function Create() {
               Name:
             </label>
             <input
-            name="name"
+              name="name"
               type="text"
               placeholder="Enter pet's name"
               className="w-full p-2 rounded-md border bg-white border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -62,7 +55,7 @@ export default function Create() {
               Category:
             </label>
             <select
-            name="category"
+              name="category"
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
             >
               <option value="dog">Dog</option>
@@ -75,8 +68,7 @@ export default function Create() {
           <div className="col-span-1 md:col-span-2">
             {/* Пол */}
             <div className="mb-4">
-              <label
-              className="block text-gray-700 font-semibold mb-2">
+              <label className="block text-gray-700 font-semibold mb-2">
                 Sex:
               </label>
               <div className="flex gap-6">
@@ -122,7 +114,6 @@ export default function Create() {
                     name="castrated"
                     value="no"
                     className="accent-indigo-600 w-5 h-5"
-
                   />
                   <span className="text-gray-700">No</span>
                 </label>
@@ -136,7 +127,7 @@ export default function Create() {
               Picture:
             </label>
             <input
-            name="imageUrl"
+              name="imageUrl"
               type="text"
               placeholder="https://example.com/pet.jpg"
               className="w-full bg-white p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
@@ -149,7 +140,7 @@ export default function Create() {
               Description:
             </label>
             <textarea
-            name="description"
+              name="description"
               rows="3"
               placeholder="Tell more about the pet"
               className="bg-white w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none resize-none"

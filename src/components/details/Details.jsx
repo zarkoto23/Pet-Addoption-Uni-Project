@@ -1,12 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { usePet } from "../../api/petsApi";
+import { usePet, useDelete } from "../../api/petsApi";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function Details() {
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const { del } = useDelete();
 
   const { petId } = useParams();
 
@@ -18,9 +19,17 @@ export default function Details() {
     navigate("/catalog");
   };
 
-  const onEditHandled=()=>{
-    navigate('/edit', {state:{pet}})
-  }
+  const onEditHandled = () => {
+    navigate("/edit", { state: { pet } });
+  };
+
+  const onDeleteHandler = () => {
+    const conf = confirm("Sure you want to delete this?");
+    if (!conf) {
+      return;
+    }
+    del(petId);
+  };
 
   return Object.keys(pet).length > 0 ? (
     <div
@@ -158,12 +167,18 @@ export default function Details() {
           ) : (
             <div>
               <div className="mt-6 flex flex-col items-center text-center ml-5 bg-gray-300 rounded-2xl shadow-lg h-16 w-100">
-                <button onClick={onEditHandled} className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 rounded-md w-40 transition-all shadow-lg hover:shadow-xl">
+                <button
+                  onClick={onEditHandled}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 rounded-md w-40 transition-all shadow-lg hover:shadow-xl"
+                >
                   Edit
                 </button>
               </div>
               <div className="mt-4 flex flex-col items-center text-center ml-4 bg-gray-300 rounded-2xl shadow-lg h-16 w-100">
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 mb-48 rounded-md w-40 transition-all shadow-lg hover:shadow-xl">
+                <button
+                  onClick={onDeleteHandler}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 mb-48 rounded-md w-40 transition-all shadow-lg hover:shadow-xl"
+                >
                   Delete
                 </button>
               </div>
