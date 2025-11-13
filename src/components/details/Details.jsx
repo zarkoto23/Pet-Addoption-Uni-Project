@@ -2,12 +2,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { usePet, useDelete } from "../../api/petsApi";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { useLike } from "../../api/likesApi";
 
 export default function Details() {
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
   const { del } = useDelete();
+  const {like}=useLike()
+
 
   const { petId } = useParams();
 
@@ -30,6 +33,12 @@ export default function Details() {
     }
     del(petId);
   };
+
+const onLikeHandler=()=>{
+  like(_id, petId)
+}
+
+
 
   return Object.keys(pet).length > 0 ? (
     <div
@@ -138,7 +147,7 @@ export default function Details() {
               {accessToken ? (
                 <div className="mt-8  flex flex-col items-center text-center bg-gray-300 rounded-2xl shadow-lg h-18 w-100">
                   <div className="flex items-center mr-28 ">
-                    <button className=" mr-18 bg-transparent border-none">
+                    <button onClick={onLikeHandler} className=" mr-18 bg-transparent border-none">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

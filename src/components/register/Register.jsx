@@ -15,7 +15,6 @@ export default function Register() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
 
     if (data.password !== data.confirm) {
       e.target.elements.confirm.value = "";

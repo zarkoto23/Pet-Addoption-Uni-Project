@@ -74,7 +74,6 @@ export const useMyPets = () => {
       });
   }, [_id, accessToken]);
 
-  console.log(myPets);
 
   return {
     myPets,
