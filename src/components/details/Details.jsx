@@ -6,8 +6,8 @@ import { UserContext } from "../../contexts/UserContext";
 export default function Details() {
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
+  const navigate=useNavigate()
 
-  const navigate = useNavigate();
   const { petId } = useParams();
 
   const pet = usePet(petId);
@@ -17,6 +17,10 @@ export default function Details() {
   const onCloseHandler = () => {
     navigate("/catalog");
   };
+
+  const onEditHandled=()=>{
+    navigate('/edit', {state:{pet}})
+  }
 
   return Object.keys(pet).length > 0 ? (
     <div
@@ -154,7 +158,7 @@ export default function Details() {
           ) : (
             <div>
               <div className="mt-6 flex flex-col items-center text-center ml-5 bg-gray-300 rounded-2xl shadow-lg h-16 w-100">
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 rounded-md w-40 transition-all shadow-lg hover:shadow-xl">
+                <button onClick={onEditHandled} className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2  mt-3 rounded-md w-40 transition-all shadow-lg hover:shadow-xl">
                   Edit
                 </button>
               </div>
