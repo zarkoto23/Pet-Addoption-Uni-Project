@@ -3,14 +3,15 @@ import { usePet, useDelete } from "../../api/petsApi";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useLike } from "../../api/likesApi";
+import { useCarousel } from "../../contexts/CarouselContext";
 
 export default function Details() {
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
   const { del } = useDelete();
-  const {like}=useLike()
-
+  const { like } = useLike();
+  const { setIsReturningFromDetails } = useCarousel();
 
   const { petId } = useParams();
 
@@ -19,7 +20,9 @@ export default function Details() {
   const isOwner = _id === pet._ownerId;
 
   const onCloseHandler = () => {
-    navigate("/catalog");
+    setIsReturningFromDetails(true);
+
+    navigate(-1);
   };
 
   const onEditHandled = () => {
@@ -34,11 +37,9 @@ export default function Details() {
     del(petId);
   };
 
-const onLikeHandler=()=>{
-  like(_id, petId)
-}
-
-
+  const onLikeHandler = () => {
+    like(_id, petId);
+  };
 
   return Object.keys(pet).length > 0 ? (
     <div
@@ -147,7 +148,10 @@ const onLikeHandler=()=>{
               {accessToken ? (
                 <div className="mt-8  flex flex-col items-center text-center bg-gray-300 rounded-2xl shadow-lg h-18 w-100">
                   <div className="flex items-center mr-28 ">
-                    <button onClick={onLikeHandler} className=" mr-18 bg-transparent border-none">
+                    <button
+                      onClick={onLikeHandler}
+                      className=" mr-18 bg-transparent border-none"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

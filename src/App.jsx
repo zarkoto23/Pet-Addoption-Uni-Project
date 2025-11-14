@@ -18,6 +18,7 @@ import Profile from "./components/profile/Profile";
 import AuthGuard from "./components/guards/AuthGuard";
 import GuestGuard from "./components/guards/GuestGruard";
 import Edit from "./components/edit/Edit";
+import CarouselProvider from "./components/providers/CarouselProvider";
 
 export default function App() {
   return (
@@ -27,30 +28,27 @@ export default function App() {
 
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
 
-      <Route element={<GuestGuard/>}>
+        <Route element={<CarouselProvider />}>
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/details/:petId" element={<Details />} />
+        </Route>
 
-
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
-      </Route>
+        <Route element={<GuestGuard />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
         <Route element={<AuthGuard />}>
           <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<Edit />} />
-
-          
         </Route>
 
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/contact" element={<NotFound />} />
-
-        <Route path="/catalog/details/:petId" element={<Details />} />
       </Routes>
 
       <Footer />
