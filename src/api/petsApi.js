@@ -12,7 +12,7 @@ export const usePets = () => {
 
   useEffect(() => {
     requester
-      .get(petsUrl)
+      .get(`${petsUrl}?sortBy=_createdOn%20desc`)
       .then(setPets)
       .catch((err) => {
         toast.error(err.message || "Something went wrong!");

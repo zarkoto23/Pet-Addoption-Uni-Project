@@ -22,7 +22,7 @@ export default function Details() {
   const onCloseHandler = () => {
     setIsReturningFromDetails(true);
 
-    navigate(-1);
+    navigate("/catalog");
   };
 
   const onEditHandled = () => {
