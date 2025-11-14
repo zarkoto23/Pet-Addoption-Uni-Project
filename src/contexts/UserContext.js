@@ -1,19 +1,17 @@
 import { createContext, useContext } from "react";
 
-export const UserContext=createContext({
-    _id:'',
-    email:'',
-    password:'',
-    accessToken:'',
+export const UserContext = createContext({
+  _id: "",
+  email: "",
+  password: "",
+  accessToken: "",
 
-    userLoginHandler:()=>null,
-    userLogoutHandler:()=>null
+  userLoginHandler: () => null,
+  userLogoutHandler: () => null,
+});
 
+export function useUserContext() {
+  const data = useContext(UserContext);
 
-})
-
-export function useUserContext(){
-    const data=useContext(UserContext)
-
-    return data
+  return data;
 }

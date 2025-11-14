@@ -15,7 +15,6 @@ export default function Register() {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
 
-
     if (data.password !== data.confirm) {
       e.target.elements.confirm.value = "";
       return toast.error("Paswords not match!");
@@ -35,8 +34,7 @@ export default function Register() {
   return (
     <form
       onSubmit={registerHandler}
-            className="fixed top-50 left-1/2  backdrop-blur-xs transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white/50 rounded-2xl shadow-xl border border-white-200 bg-gradient fade-in-up"
-
+      className="fixed top-50 left-1/2  backdrop-blur-xs transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white/50 rounded-2xl shadow-xl border border-white-200 bg-gradient fade-in-up"
     >
       <div className="w-full ">
         <p>Email</p>

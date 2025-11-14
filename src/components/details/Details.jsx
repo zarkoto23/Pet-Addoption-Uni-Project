@@ -46,12 +46,10 @@ export default function Details() {
       onClick={onCloseHandler}
       className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
     >
-      {/* Карта с детайлите */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative flex flex-col md:flex-row max-w-5xl w-full h-[600px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform"
       >
-        {/* ❌ X бутон (горе вдясно) */}
         <button
           onClick={onCloseHandler}
           className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
@@ -60,7 +58,6 @@ export default function Details() {
           ✕
         </button>
 
-        {/* 📸 Снимката вляво */}
         <div className="md:w-1/2 w-full h-full overflow-hidden flex items-center justify-center bg-white/20">
           <img
             src={pet.imageUrl}
@@ -69,19 +66,16 @@ export default function Details() {
           />
         </div>
 
-        {/* 📝 Информация вдясно */}
         <div
           className="bg-gradient-to-r from-indigo-300/90 via-purple-300/90 to-pink-200/90
  flex-1 p-8 flex flex-col justify-start h-full overflow-y-auto"
         >
           <div>
-            {/* 🐾 Name */}
             <h2 className="text-4xl text-gray-800 mt-0 mb-6">
               <span>Name:</span>{" "}
               <span className="text-indigo-600 font-bold">{pet.name}</span>
             </h2>
 
-            {/* 📋 Останалите детайли */}
             <div className="grid grid-cols-2 gap-8 text-gray-700 ">
               <p>
                 <span className="font-semibold text-gray-800">Category:</span>{" "}
@@ -103,8 +97,6 @@ export default function Details() {
               </p>
             </div>
 
-            {/* 📝 Description */}
-            {/* 📝 Description — пълна ширина, без скрол */}
             <div className="leading-relaxed w-full mt-8">
               <p className="font-semibold text-gray-800 mb-2">Description:</p>
 
@@ -126,7 +118,6 @@ export default function Details() {
               </button>
             )}
 
-            {/* ❤️ Likes — остава в дясната колона */}
             <div className="grid grid-cols-2  gap-8 text-gray-700 mt-8">
               <div>
                 <p className="font-semibold text-gray-800 mb-2">Likes:</p>

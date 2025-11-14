@@ -74,7 +74,6 @@ export const useMyPets = () => {
       });
   }, [_id, accessToken]);
 
-
   return {
     myPets,
   };
@@ -102,7 +101,7 @@ export const useUpdate = () => {
 
 export const useDelete = () => {
   const { accessToken } = useContext(UserContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const del = async (petId) => {
     try {
@@ -110,7 +109,7 @@ export const useDelete = () => {
         headers: { "X-Authorization": accessToken },
       });
       toast.success("Successfull deleted!");
-      navigate(-1)
+      navigate(-1);
     } catch (err) {
       toast.error(err.message);
     }

@@ -27,7 +27,6 @@ export default function Home() {
           </div>
         </h1>
 
-        {/* Подзаглавие с по-интересен стил */}
         <p
           style={{
             animation: "fadeInUp 0.8s ease-out 0.8s forwards",
@@ -38,19 +37,17 @@ export default function Home() {
           home they deserve
         </p>
 
-        {/* Бутон "Научете повече" със стила от формуляра */}
 
- <Link
-  to="/catalog"
-  style={{
-    animation: "fadeInUp 0.8s ease-out 1s forwards",
-  }}
-  className="group relative block mx-auto text-center bg-indigo-500/80 hover:bg-indigo-600 transition-all text-white w-full max-w-xs py-2 rounded-md cursor-pointer overflow-hidden opacity-0"
->
-  Meet Our Pets
-  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-</Link>
-
+        <Link
+          to="/catalog"
+          style={{
+            animation: "fadeInUp 0.8s ease-out 1s forwards",
+          }}
+          className="group relative block mx-auto text-center bg-indigo-500/80 hover:bg-indigo-600 transition-all text-white w-full max-w-xs py-2 rounded-md cursor-pointer overflow-hidden opacity-0"
+        >
+          Meet Our Pets
+          <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+        </Link>
       </div>
     </div>
   );

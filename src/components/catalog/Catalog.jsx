@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { usePets } from "../../api/petsApi";
 import { useCarousel } from "../../contexts/CarouselContext";
 import CatalogItem from "./CatalogItem";
@@ -7,12 +6,6 @@ export default function Catalog() {
   const { pets } = usePets();
   const { startIdx, setStartIdx } = useCarousel();
   const { isReturningFromDetails, setIsReturningFromDetails } = useCarousel();
-
-  useEffect(() => {
-    if (isReturningFromDetails) {
-      setTimeout(() => setIsReturningFromDetails(true), 0);
-    }
-  }, [isReturningFromDetails, setIsReturningFromDetails]);
 
   const visibleCount = 4;
 

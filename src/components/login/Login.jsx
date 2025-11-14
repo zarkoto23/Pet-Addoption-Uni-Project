@@ -17,10 +17,9 @@ export default function Login() {
 
     try {
       const authData = await login(data.email, data.password);
-      
+
       userLoginHandler(authData);
       toast.success("You are Logged in!");
-
 
       nav("/");
     } catch (err) {

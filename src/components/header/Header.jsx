@@ -82,31 +82,29 @@ export default function Header() {
             </>
           ) : (
             <>
-           
-            
-            <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
-          }
-          >
-            Login
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </NavLink>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
+                }
+              >
+                Login
+                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+              </NavLink>
 
-<NavLink
-            to="/register"
-            className={({ isActive }) =>
-              `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
-          }
-          >
-            Register
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-          </NavLink>
-      </>
-      )}
+              <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                  `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
+                }
+              >
+                Register
+                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+              </NavLink>
+            </>
+          )}
         </ul>
       </div>
-      </header>
-    );
+    </header>
+  );
 }

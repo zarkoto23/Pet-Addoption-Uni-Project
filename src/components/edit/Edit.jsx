@@ -39,9 +39,7 @@ export default function Edit() {
         onSubmit={onUpdateHandler}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
-        {/* Грид оформление */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Име */}
           <div className="col-span-1">
             <label className="block text-gray-700 font-semibold mb-2">
               Name:
@@ -54,7 +52,6 @@ export default function Edit() {
             />
           </div>
 
-          {/* Категория */}
           <div className="col-span-1">
             <label className="block text-gray-700 font-semibold mb-2">
               Category:
@@ -70,9 +67,7 @@ export default function Edit() {
             </select>
           </div>
 
-          {/* Пол и Кастрация */}
           <div className="col-span-1 md:col-span-2">
-            {/* Пол */}
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">
                 Sex:
@@ -101,7 +96,6 @@ export default function Edit() {
               </div>
             </div>
 
-            {/* Кастрация */}
             <div>
               <label className="block text-gray-700 font-semibold mb-2">
                 Castrated:
@@ -131,7 +125,6 @@ export default function Edit() {
             </div>
           </div>
 
-          {/* Снимка */}
           <div className="col-span-1 md:col-span-2">
             <label className="block text-gray-700 font-semibold mb-2">
               Picture:
@@ -144,7 +137,6 @@ export default function Edit() {
             />
           </div>
 
-          {/* Описание */}
           <div className="col-span-1 md:col-span-2">
             <label className="block text-gray-700 font-semibold mb-2">
               Description:
@@ -157,7 +149,6 @@ export default function Edit() {
             ></textarea>
           </div>
 
-          {/* Възраст (Years + Months с общо заглавие) */}
           <div className="col-span-1 md:col-span-2">
             <label className="block text-gray-700 font-semibold mb-2">
               Age:
@@ -186,7 +177,6 @@ export default function Edit() {
           </div>
         </div>
 
-        {/* Бутон */}
         <button
           type="submit"
           className="relative w-full bg-indigo-500/80 hover:bg-indigo-600 text-white py-2 rounded-md font-semibold transition-all group overflow-hidden"

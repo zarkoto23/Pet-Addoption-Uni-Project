@@ -23,8 +23,6 @@ export const useLike = () => {
       },
       { headers: { "X-Authorization": accessToken } }
     );
-
-    
   };
 
   return {

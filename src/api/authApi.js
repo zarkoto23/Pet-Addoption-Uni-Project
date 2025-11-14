@@ -56,6 +56,7 @@ export const useLogout = () => {
     navigate("/");
   };
 
-  return { 
-    logout, };
+  return {
+    logout,
+  };
 };
