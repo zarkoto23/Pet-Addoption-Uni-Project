@@ -5,7 +5,7 @@ import CatalogItem from "./CatalogItem";
 export default function Catalog() {
   const { pets } = usePets();
   const { startIdx, setStartIdx } = useCarousel();
-  const { isReturningFromDetails, setIsReturningFromDetails } = useCarousel();
+  const { isReturningFromDetails } = useCarousel();
 
   const visibleCount = 4;
 

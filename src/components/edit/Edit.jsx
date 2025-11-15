@@ -8,6 +8,11 @@ export default function Edit() {
   const pet = state?.pet;
   const navigate = useNavigate();
 
+  const onCloseHandler = (e) => {
+    e.preventDefault();
+    navigate(`/catalog/details/${pet._id}`);
+  };
+
   const onUpdateHandler = async (e) => {
     e.preventDefault();
 
@@ -26,6 +31,13 @@ export default function Edit() {
       return;
     }
 
+    const isSame = Object.keys(data).every((key) => data[key] == pet[key]);
+
+    if (isSame) {
+      toast.error("There is not changed fields!");
+      return;
+    }
+
     data._id = pet._id;
 
     const result = await update(data);
@@ -33,13 +45,20 @@ export default function Edit() {
     navigate(`/catalog/details/${result?._id}`);
   };
 
-  return (
+  return pet ? (
     <div className="fixed  left-1/2  transform -translate-x-1/2 flex-col items-center justify-start pt-36">
       <form
         onSubmit={onUpdateHandler}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button
+            onClick={onCloseHandler}
+            className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
+            aria-label="Close details"
+          >
+            ✕
+          </button>
           <div className="col-span-1">
             <label className="block text-gray-700 font-semibold mb-2">
               Name:
@@ -185,6 +204,12 @@ export default function Edit() {
           <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
         </button>
       </form>
+    </div>
+  ) : (
+    <div className="flex justify-center items-center h-screen">
+      <div className="spinner-border text-indigo-500/80" role="status">
+        <span className="visually-hidden text-4xl">Loading...</span>
+      </div>
     </div>
   );
 }

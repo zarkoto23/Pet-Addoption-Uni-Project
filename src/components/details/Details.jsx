@@ -35,6 +35,10 @@ export default function Details() {
       return;
     }
     del(petId);
+    navigate('/catalog')
+    console.log('onDelete');
+    
+
   };
 
   const onLikeHandler = () => {

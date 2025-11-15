@@ -29,3 +29,7 @@ export const useLike = () => {
     like,
   };
 };
+
+
+
+// http://localhost:3030/data/likes?where=petId%3D"ee3ddf64-5d3a-4c13-abe8-fde1ee2afefb"
