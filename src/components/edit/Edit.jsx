@@ -34,7 +34,7 @@ export default function Edit() {
     const isSame = Object.keys(data).every((key) => data[key] == pet[key]);
 
     if (isSame) {
-      toast.error("There is not changed fields!");
+      toast.error("There is no changes!");
       return;
     }
 

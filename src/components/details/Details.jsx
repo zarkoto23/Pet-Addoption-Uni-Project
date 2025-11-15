@@ -1,23 +1,43 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { usePet, useDelete } from "../../api/petsApi";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useLike } from "../../api/likesApi";
 import { useCarousel } from "../../contexts/CarouselContext";
+import { toast } from "react-toastify";
 
 export default function Details() {
+  const { setIsReturningFromDetails } = useCarousel();
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
   const { del } = useDelete();
-  const { like } = useLike();
-  const { setIsReturningFromDetails } = useCarousel();
-
+  const { like, getPetLikes } = useLike();
   const { petId } = useParams();
-
   const pet = usePet(petId);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
 
   const isOwner = _id === pet._ownerId;
+
+  useEffect(() => {
+    getPetLikes(petId).then((result) => {
+      setLikes(result.length);
+      setIsLiked(result.some((like) => like._ownerId === _id));
+    });
+  }, [petId, getPetLikes]);
+
+  const onLikeHandler = async () => {
+    const action = await like(_id, petId);
+
+    if (action === "added") {
+      setLikes((prev) => prev + 1);
+      setIsLiked(true);
+    } else if (action === "removed") {
+      setLikes((prev) => prev - 1);
+      setIsLiked(false);
+    }
+  };
 
   const onCloseHandler = () => {
     setIsReturningFromDetails(true);
@@ -35,14 +55,7 @@ export default function Details() {
       return;
     }
     del(petId);
-    navigate('/catalog')
-    console.log('onDelete');
-    
-
-  };
-
-  const onLikeHandler = () => {
-    like(_id, petId);
+    navigate("/catalog");
   };
 
   return Object.keys(pet).length > 0 ? (
@@ -125,7 +138,7 @@ export default function Details() {
             <div className="grid grid-cols-2  gap-8 text-gray-700 mt-8">
               <div>
                 <p className="font-semibold text-gray-800 mb-2">Likes:</p>
-                <p className="text-indigo-600">{pet.likes?.length || 0}</p>
+                <p className="text-indigo-600">{likes}</p>
               </div>
             </div>
           </div>
@@ -153,7 +166,12 @@ export default function Details() {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        className="w-18 h-18 cursor-pointer transition-all hover:scale-110 hover:stroke-indigo-500"
+                        className={`w-18 h-18 cursor-pointer transition-all hover:scale-110 fill-gray-700 hover:stroke-gray-700 
+   ${
+     isLiked
+       ? "stroke-red-600 fill-red-600 hover:stroke-red-600"
+       : "stroke-gray-700 hover:stroke-gray-700"
+   }`}
                       >
                         <path
                           strokeLinecap="round"
