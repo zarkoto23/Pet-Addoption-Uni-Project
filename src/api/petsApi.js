@@ -3,6 +3,7 @@ import requester from "../utils/requester";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import {useLike} from './likesApi'
 
 const petsUrl = "http://localhost:3030/data/pets";
 
@@ -78,6 +79,27 @@ export const useMyPets = () => {
     myPets,
   };
 };
+
+
+export const useMyLikedPets=()=>{
+  const {getPetLikesByUser}=useLike()
+  const{_id}=useContext(UserContext)
+
+    // useEffect(()=>{
+      const getLikedPets=async()=>{
+      const  likedPets=await getPetLikesByUser(_id)
+      console.log(likedPets);
+      }
+      return {likedPets}
+      
+    // await Promise.all(
+    //     likes.map(like =>
+    //         requester.get(`http://localhost:3030/data/pets/${like.petId}`)
+    //     )
+    // );
+    // })
+
+}
 
 
 

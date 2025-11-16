@@ -1,8 +1,7 @@
 import { toast } from "react-toastify";
 import { useUserContext } from "../contexts/UserContext";
 import requester from "../utils/requester";
-import { useCallback, useState } from "react";
-import { usePet } from "./petsApi";
+import { useCallback,  } from "react";
 
 const baseLikeUrl = "http://localhost:3030/data/likes";
 
@@ -53,24 +52,15 @@ export const useLike = () => {
     }
 
 
-const getPetLikesByUser = async (userId) => {
+const getPetLikesByUser = useCallback( async (userId) => {
     const likes = await requester.get(
         `${baseLikeUrl}?where=_ownerId%3D%22${userId}%22`
     );
 
-    const pets = await Promise.all(
-        likes.map(like =>
-            requester.get(`http://localhost:3030/data/pets/${like.petId}`)
-        )
-    );
 
-    return pets;
-};
+    return likes
+},[])
 
-
-
-
- 
 
   return {
     like,

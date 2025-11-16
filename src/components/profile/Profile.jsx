@@ -1,138 +1,72 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useMyPets } from "../../api/petsApi";
-import { useNavigate } from "react-router-dom";
-import { useLike } from "../../api/likesApi";
+
+import ProfileItem from "./ProfileItem";
 
 export default function Profile() {
   const { email, _id } = useContext(UserContext);
-  const [toggle, setToggle] = useState(true);
-  const [userLiked, setUserLiked] = useState([]);
-  const navigate = useNavigate();
-  const { getPetLikesByUser } = useLike();
+  const [likedPets, setLikedPets] = useState([]);
+  const [likedOrYour, setLikedOrYour] = useState(true);
 
   const { myPets } = useMyPets();
 
-  useEffect(() => {
-    if (!toggle) return;
-
-    const loadLikedPets = async () => {
-        try {
-            const result = await getPetLikesByUser(_id);
-            setUserLiked(result);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    loadLikedPets();
-
-}, [toggle, _id,getPetLikesByUser]);
-
-
-  const onLikedHandler = () => {
-    setToggle(true);
-    getPetLikesByUser(_id).then((result) => setUserLiked(result));
-  };
-
-  const onMyPostHandler = () => {
-    setToggle(false);
-    getPetLikesByUser(_id).then((result) => setUserLiked(result));
-  };
 
   return (
-  <div className="fixed left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-start pt-36 space-y-6 fade-in-up">
-  <div className="bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-xl p-4 w-full max-w-2xl text-center">
-    <h2 className="text-3xl font-bold text-gray-800 mt-4">{email}</h2>
-  </div>
+    <div className="pt-[120px] pb-[90px] min-h-screen flex flex-col items-center fade-in-up">
 
-  <div className="flex backdrop-blur-xs items-center justify-center space-x-8 bg-gray-300/60 px-4 py-4 rounded-full shadow-md border border-indigo-400">
-    <button
-      onClick={onLikedHandler}
-      className={`w-48 px-6 py-2 rounded-full border border-black font-semibold transition-all duration-300 ${
-        toggle
-          ? "bg-indigo-600 text-white shadow-lg"
-          : "bg-transparent text-gray-700 hover:bg-white/80"
-      }`}
-    >
-      ❤️ Liked pets
-    </button>
+      {/* Header block */}
+      <div className="bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-xl p-4 w-full max-w-2xl text-center mb-6">
+        <h2 className="text-3xl font-bold text-gray-800 mt-4">{email}</h2>
+      </div>
 
-    <button
-      onClick={onMyPostHandler}
-      className={`w-48 px-6 py-2 rounded-full border border-black font-semibold transition-all duration-300 ${
-        toggle
-          ? "bg-transparent text-gray-700 hover:bg-white/80"
-          : "bg-indigo-600 text-white shadow-lg"
-      }`}
-    >
-      🐾 Your pets
-    </button>
-  </div>
+      {/* Buttons */}
+      <div className="bg-gradient border backdrop-blur-xs border-white/50 rounded-2xl shadow-xl p-6 w-full max-w-4xl flex gap-6 justify-center mb-6">
+        <button
+          onClick={() => { setLikedOrYour(true)}}
+          className={`w-48 px-6 py-2 rounded-full border border-black font-semibold ${
+            likedOrYour ? "bg-indigo-600 text-white" : "bg-transparent text-gray-700"
+          }`}
+        >
+          ❤️ Liked pets
+        </button>
 
-  <div className="bg-gradient border backdrop-blur-xs border-white/50 rounded-2xl shadow-xl p-8 w-full max-w-4xl">
-    {toggle ? (
-      <>
+        <button
+          onClick={() => { setLikedOrYour(false)}}
+          className={`w-48 px-6 py-2 rounded-full border border-black font-semibold ${
+            !likedOrYour ? "bg-indigo-600 text-white" : "bg-transparent text-gray-700"
+          }`}
+        >
+          🐾 Your pets
+        </button>
+      </div>
+
+      {/* Scrollable grid (FIXED HEIGHT) */}
+      <div
+        className="
+          backdrop-blur-xs bg-gray-300/60 px-6 py-6 rounded-2xl shadow-md
+          border border-indigo-400 w-full max-w-5xl
+          h-[400px]             /* ✔ ФИКСИРАНА ВИСОЧИНА */
+          overflow-y-auto
+        "
+      >
         <h3 className="text-2xl font-semibold text-indigo-700 mb-6 text-center">
-          Your Liked Pets:
+          {likedOrYour ? "Your Liked Pets:" : "Your Pets:"}
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-h-[38vh] overflow-y-auto pr-2">
-          {userLiked?.map((pet) => (
-            <div
-              key={pet._id}
-              onClick={() => navigate(`/catalog/details/${pet._id}`)}
-              className="bg-white/80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-4 mt-4 duration-500 cursor-pointer"
-            >
-              <img
-                src={pet.imageUrl}
-                alt={pet.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4 text-center">
-                <h4 className="text-lg font-semibold text-gray-800">
-                  {pet.name}
-                </h4>
-                <p className="text-sm text-gray-600">
-                  {pet.years} years and {pet.months} months
-                </p>
-              </div>
-            </div>
+        <div
+          className="
+            grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+            gap-6
+            auto-rows-[300px]
+          "
+        >
+          {(likedOrYour ? likedPets : myPets).map((pet) => (
+            <ProfileItem key={pet._id} pet={pet} />
           ))}
         </div>
-      </>
-    ) : (
-      <>
-        <h3 className="text-2xl font-semibold text-indigo-700 mb-6 text-center">
-          Your Pets:
-        </h3>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-h-[38vh] overflow-y-auto pr-2">
-          {myPets.map((pet) => (
-            <div
-              key={pet._id}
-              onClick={() => navigate(`/catalog/details/${pet._id}`)}
-              className="bg-white/80 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-4 mt-4 duration-500 cursor-pointer"
-            >
-              <img
-                src={pet.imageUrl}
-                alt={pet.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4 text-center">
-                <h4 className="text-lg font-semibold text-gray-800">
-                  {pet.name}
-                </h4>
-                <p className="text-sm text-gray-600">
-                  {pet.years} years and {pet.months} months
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </>
-    )}
-  </div>
-</div>
-  )
+    </div>
+  );
 }

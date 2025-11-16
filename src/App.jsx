@@ -23,9 +23,16 @@ import CarouselProvider from "./components/providers/CarouselProvider";
 export default function App() {
   return (
     <UserProvider>
-      <div className="background"></div>
-      <Header />
+  <div className="min-h-screen flex flex-col relative">
 
+    {/* Background */}
+    <div className="background"></div>
+
+    {/* Header - fixed */}
+    <Header />
+
+    {/* Content zone */}
+    <main className="flex-1 flex flex-col">
       <Routes>
         <Route index element={<Home />} />
 
@@ -49,21 +56,26 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/volunteer" element={<Volunteer />} />
       </Routes>
+    </main>
 
-      <Footer />
-      <ToastContainer
-        position="top-center"
-        autoClose={1500}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-        theme="light"
-        transition={Flip}
-      />
-    </UserProvider>
+    {/* Footer - sticky automatically */}
+    <Footer />
+
+    <ToastContainer
+      position="top-center"
+      autoClose={1500}
+      hideProgressBar
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable={false}
+      pauseOnHover
+      theme="light"
+      transition={Flip}
+    />
+  </div>
+</UserProvider>
+
   );
 }

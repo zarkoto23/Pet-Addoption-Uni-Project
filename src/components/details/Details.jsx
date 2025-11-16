@@ -61,7 +61,7 @@ export default function Details() {
   return Object.keys(pet).length > 0 ? (
     <div
       onClick={onCloseHandler}
-      className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
+      className="fade-in-up fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
     >
       <div
         onClick={(e) => e.stopPropagation()}
