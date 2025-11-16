@@ -151,6 +151,7 @@ html, body {
   will-change: transform;
 }
 
+
 .carousel-step-0 { transform: translateX(0%); }
 .carousel-step-1 { transform: translateX(-25%); }
 .carousel-step-2 { transform: translateX(-50%); }
