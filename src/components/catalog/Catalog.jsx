@@ -1,5 +1,6 @@
 import { usePets } from "../../api/petsApi";
 import { useCarousel } from "../../contexts/CarouselContext";
+import Loading from "../static-components/Loading";
 import CatalogItem from "./CatalogItem";
 
 export default function Catalog() {
@@ -48,10 +49,6 @@ export default function Catalog() {
       </button>
     </div>
   ) : (
-    <div className="flex justify-center items-center h-screen">
-      <div className="spinner-border text-indigo-500/80" role="status">
-        <span className="visually-hidden text-4xl">Loading...</span>
-      </div>
-    </div>
+   <Loading/>
   );
 }

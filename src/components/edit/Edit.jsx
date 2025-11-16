@@ -10,7 +10,7 @@ export default function Edit() {
 
   const onCloseHandler = (e) => {
     e.preventDefault();
-    navigate(`/catalog/details/${pet._id}`);
+    navigate(`/catalog/details/${pet._id}`,{ state: { from: "edit" } });
   };
 
   const onUpdateHandler = async (e) => {

@@ -3,7 +3,7 @@ import requester from "../utils/requester";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import {useLike} from './likesApi'
+import { useLike } from "./likesApi";
 
 const petsUrl = "http://localhost:3030/data/pets";
 
@@ -71,8 +71,6 @@ export const useMyPets = () => {
       .catch((err) => {
         toast.error(err.message);
       });
-
-      
   }, [_id, accessToken]);
 
   return {
@@ -80,33 +78,36 @@ export const useMyPets = () => {
   };
 };
 
+export const useMyLikedPets = () => {
+  const [loading, setLoading] = useState(true);
+  const { getPetLikesByUser } = useLike();
+  const { _id } = useContext(UserContext);
 
-export const useMyLikedPets=()=>{
-  const {getPetLikesByUser}=useLike()
-  const{_id}=useContext(UserContext)
+  const [likedPets, setLikedPets] = useState([]);
 
-    // useEffect(()=>{
-      const getLikedPets=async()=>{
-      const  likedPets=await getPetLikesByUser(_id)
-      console.log(likedPets);
-      }
-      return {likedPets}
-      
-    // await Promise.all(
-    //     likes.map(like =>
-    //         requester.get(`http://localhost:3030/data/pets/${like.petId}`)
-    //     )
-    // );
-    // })
+  useEffect(() => {
+    setLoading(true);
 
-}
+    const load = async () => {
+      // 1️⃣ Взимаме likes на user-а
+      const likes = await getPetLikesByUser(_id);
 
+      // 2️⃣ За всеки like → fetch-ваме pet по petId
+      const pets = await Promise.all(
+        likes.map((like) =>
+          requester.get(`http://localhost:3030/data/pets/${like.petId}`)
+        )
+      );
 
+      setLikedPets(pets);
+      setLoading(false);
+    };
 
+    load();
+  }, [_id, getPetLikesByUser]);
 
-
-
-
+  return { likedPets, loading };
+};
 
 export const useUpdate = () => {
   const { accessToken } = useContext(UserContext);

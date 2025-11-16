@@ -5,7 +5,9 @@ export default function ProfileItem({ pet }) {
 
   return (
     <div
-      onClick={() => navigate(`/catalog/details/${pet._id}`)}
+      onClick={() =>
+        navigate(`/catalog/details/${pet._id}`, { state: { from: "profile" } })
+      }
       className="
         w-full 
         h-full
@@ -25,8 +27,6 @@ export default function ProfileItem({ pet }) {
         hover:bg-white/80     /* <— ТУК Е hover ефекта */
       "
     >
-
-      {/* Снимка */}
       <img
         src={pet.imageUrl}
         alt={pet.name}
@@ -39,14 +39,12 @@ export default function ProfileItem({ pet }) {
         "
       />
 
-      {/* Текст */}
-      <div className="text-center text-black/80 p-4">
+      <div className="text-center text-black/80 ">
         <h4 className="text-lg font-semibold">{pet.name}</h4>
         <p className="text-sm opacity-90">
           {pet.years} years • {pet.months} months
         </p>
       </div>
-
     </div>
   );
 }

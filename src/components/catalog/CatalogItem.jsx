@@ -4,7 +4,7 @@ export default function CatalogItem({ pet }) {
   const navigate = useNavigate();
 
   const onDetailsClick = () => {
-    navigate(`details/${pet._id}`);
+    navigate(`details/${pet._id}`,{ state: { from: "catalog" } });
   };
   return (
     <div
