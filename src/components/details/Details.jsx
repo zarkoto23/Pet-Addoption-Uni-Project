@@ -78,7 +78,7 @@ const onCloseHandler = () => {
     >
       <div
         
-        className="relative flex flex-col md:flex-row max-w-5xl w-full h-[600px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform"
+        className="relative flex flex-col md:flex-row max-w-5xl w-full h-[700px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform"
       >
         <button
         type="button"
