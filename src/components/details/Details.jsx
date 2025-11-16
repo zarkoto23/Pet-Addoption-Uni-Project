@@ -1,4 +1,4 @@
-import { useNavigate,useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { usePet, useDelete } from "../../api/petsApi";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
@@ -11,7 +11,7 @@ export default function Details() {
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
-  const location=useLocation()
+  const location = useLocation();
 
   const { del } = useDelete();
   const { like, getPetLikes } = useLike();
@@ -27,7 +27,7 @@ export default function Details() {
       setLikes(result.length);
       setIsLiked(result.some((like) => like._ownerId === _id));
     });
-  }, [petId, getPetLikes,_id]);
+  }, [petId, getPetLikes, _id]);
 
   const onLikeHandler = async () => {
     const action = await like(_id, petId);
@@ -41,47 +41,51 @@ export default function Details() {
     }
   };
 
-const onCloseHandler = () => {
-  setIsReturningFromDetails(true);
+  const onCloseHandler = () => {
+    setIsReturningFromDetails(true);
 
-  if (location.state?.from === "catalog") {
-    navigate('/catalog');     
-  }else if(location.state?.from==='profile'){
-    navigate('/profile')
-  }else if(location.state?.from==='edit'){
-    navigate(`/catalog/details/${petId}`)
-  }
-  else {
-    navigate("/catalog");
-  }
-};
-
+    if (location.state?.from === "catalog") {
+      navigate("/catalog");
+    } else if (location.state?.from === "profile") {
+      navigate("/profile");
+    } else if (location.state?.from === "edit") {
+      navigate(`/catalog/details/${petId}`);
+    } else {
+      navigate("/catalog");
+    }
+  };
 
   const onEditHandled = () => {
     navigate("/edit", { state: { pet } });
   };
 
-  const onDeleteHandler = () => {
+  const onDeleteHandler = async() => {
     const conf = confirm("Sure you want to delete this?");
     if (!conf) {
       return;
     }
-    del(petId);
-    navigate(-1);
+    await del(petId);
+    if (location.state?.from === "catalog") {
+      navigate("/catalog");
+    } else if (location.state?.from === "profile") {
+      navigate("/profile");
+    }  else {
+      navigate("/catalog");
+    }
   };
 
   return Object.keys(pet).length > 0 ? (
     <div
-    type="button"
+      type="button"
       onClick={onCloseHandler}
       className="fade-in-up fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
     >
       <div
-        
+        onClick={(e) => e.stopPropagation()}
         className="relative flex flex-col md:flex-row max-w-5xl w-full h-[700px] bg-gradient-to-br from-indigo-300/60 via-purple-200/60 to-pink-200/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden transition-transform"
       >
         <button
-        type="button"
+          type="button"
           onClick={onCloseHandler}
           className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10"
           aria-label="Close details"
@@ -228,6 +232,6 @@ const onCloseHandler = () => {
       </div>
     </div>
   ) : (
-    <Loading/>
+    <Loading />
   );
 }

@@ -1,12 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUpdate } from "../../api/petsApi";
+import { useState } from "react";
 
 export default function Edit() {
   const { state } = useLocation();
   const { update } = useUpdate();
   const pet = state?.pet;
   const navigate = useNavigate();
+
+  const [disabled, setDisabled]=useState(false)
 
   const onCloseHandler = (e) => {
     e.preventDefault();
@@ -15,6 +18,7 @@ export default function Edit() {
 
   const onUpdateHandler = async (e) => {
     e.preventDefault();
+    setDisabled(true)
 
     let data = Object.fromEntries(new FormData(e.currentTarget));
 
@@ -43,6 +47,7 @@ export default function Edit() {
     const result = await update(data);
 
     navigate(`/catalog/details/${result?._id}`);
+    setDisabled(false)
   };
 
   return pet ? (
@@ -198,6 +203,7 @@ export default function Edit() {
 
         <button
           type="submit"
+          disabled={disabled}
           className="relative w-full bg-indigo-500/80 hover:bg-indigo-600 text-white py-2 rounded-md font-semibold transition-all group overflow-hidden"
         >
           Update

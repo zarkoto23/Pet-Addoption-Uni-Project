@@ -14,7 +14,7 @@ export const useLike = () => {
       );
       return result;
     } catch (err) {
-      toast.error(err.message);
+      
       return [];
     }
   }, []);

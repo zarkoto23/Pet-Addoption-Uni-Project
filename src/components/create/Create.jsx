@@ -1,13 +1,16 @@
 import { toast } from "react-toastify";
 import { useCreate } from "../../api/petsApi";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Create() {
+  const [disabled, setDisabled]=useState(false)
   const { create } = useCreate();
   const navigate = useNavigate();
 
   const submitCreate = async (e) => {
     e.preventDefault();
+    setDisabled(true)
     const formData = new FormData(e.currentTarget);
     let data = Object.fromEntries(formData);
 
@@ -20,12 +23,17 @@ export default function Create() {
     );
 
     if (hasEmptyFields || !data.gender || !data.castrated) {
+      setDisabled(false)
       toast.error("All fields must be filled!");
       return;
     }
 
     const result = await create(data);
+    setDisabled(false)
     navigate(`/catalog/details/${result?._id}`);
+  console.log('submit');
+  
+
   };
 
   const onCloseCreate=()=>{
@@ -181,6 +189,7 @@ export default function Create() {
 
         <button
           type="submit"
+          disabled={disabled}
           className="relative w-full bg-indigo-500/80 hover:bg-indigo-600 text-white py-2 rounded-md font-semibold transition-all group overflow-hidden"
         >
           Publish Ad
