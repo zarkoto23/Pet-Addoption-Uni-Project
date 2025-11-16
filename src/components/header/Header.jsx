@@ -1,24 +1,37 @@
 import { NavLink } from "react-router-dom";
-
 import { useLogout } from "../../api/authApi";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+
 export default function Header() {
   const { logout } = useLogout();
   const { accessToken, email } = useContext(UserContext);
 
   return (
-    <header className="fixed backdrop-blur-xs top-0 left-0 w-full z-50 bg-gradient-to-r from-indigo-500/50 via-purple-400/50 to-indigo-400/50 ">
-      <div className="flex items-center justify-around text-grey-500">
-        <div className="flex items-center">
+    <header className="
+      fixed 
+      top-0 left-0 
+      w-full 
+      h-[90px]              /* ФИКСИРАНА ВИСОЧИНА */
+      z-50 
+      backdrop-blur-xs 
+      bg-gradient-to-r from-indigo-500/50 via-purple-400/50 to-indigo-400/50
+      flex items-center     /* Центрира съдържанието вертикално */
+      px-8
+    ">
+      <div className="w-full flex items-center justify-between">
+
+        {/* Лого + Логнат email */}
+        <div className="flex items-center gap-6">
           <NavLink to={"/"}>
             <img
               src="icon.png"
-              className="w-30 h-30 object-contain -rotate-30 transition-transform ease-in-out duration-500 transform hover:rotate-0 hover:scale-120"
+              className="w-20 h-20 object-contain -rotate-30 transition-transform duration-500 hover:rotate-0 hover:scale-110"
             />
           </NavLink>
+
           {accessToken && (
-            <p className="flex gap-[60px] text-xl  mt-15">
+            <p className="text-xl flex items-center gap-2">
               Logged in as:
               <NavLink to={"/profile"}>
                 <span className="text-yellow font-semibold underline">
@@ -29,7 +42,8 @@ export default function Header() {
           )}
         </div>
 
-        <ul className="flex gap-[60px] text-xl font-semibold mt-15">
+        {/* Навигация */}
+        <ul className="flex items-center gap-12 text-xl font-semibold">
           <NavLink
             to={"/"}
             className={({ isActive }) =>
@@ -74,7 +88,7 @@ export default function Header() {
 
               <button
                 onClick={logout}
-                className="relative group pb-1 text-grey-500 cursor-pointer"
+                className="relative group pb-1 cursor-pointer"
               >
                 Logout
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
@@ -104,6 +118,7 @@ export default function Header() {
             </>
           )}
         </ul>
+
       </div>
     </header>
   );

@@ -37,20 +37,20 @@ body {
 
 /* Фонов елемент */
 .background {
-  position: absolute;
-  top: 30vh;
+  position: fixed;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 95vw;
-  height: 110vh;
+  height: 100vh;
   background-image: url('11.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center 300px; /* Премества САМО изображението надолу */
   z-index: -1;
   pointer-events: none;
-  user-select: none;
 }
+
 
 /* Съдържание над фона */
 .content {
@@ -61,17 +61,18 @@ body {
   margin-top: 100px;
 }
 
-html,
-body {
+html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
+/* ---------- Toast ---------- */
 .toast-animation {
   position: fixed;
   top: 9rem;
@@ -138,7 +139,6 @@ body {
 }
 
 /* ---------- Carousel ---------- */
-
 .carousel-wrapper {
   overflow: hidden;
   position: relative;
@@ -158,7 +158,6 @@ body {
 .carousel-step-4 { transform: translateX(-100%); }
 
 /* ---------- Loader ---------- */
-
 .loader {
   font-size: 10px;
   width: 1em;
@@ -171,7 +170,6 @@ body {
 }
 
 @keyframes mulShdSpin {
-
   0%, 100% {
     box-shadow:
       0em -2.6em 0em 0em #ffffff,
@@ -183,6 +181,7 @@ body {
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
   }
+
 
   12.5% {
     box-shadow:
@@ -253,18 +252,7 @@ body {
       0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
       -2.6em 0em 0 0em #ffffff,
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
+      -1.8em -1.8em
 
-  87.5% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.7),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
-      -1.8em -1.8em 0 0em #ffffff;
   }
 }
