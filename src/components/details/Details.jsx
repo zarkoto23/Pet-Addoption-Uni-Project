@@ -25,7 +25,7 @@ export default function Details() {
       setLikes(result.length);
       setIsLiked(result.some((like) => like._ownerId === _id));
     });
-  }, [petId, getPetLikes]);
+  }, [petId, getPetLikes,_id]);
 
   const onLikeHandler = async () => {
     const action = await like(_id, petId);
