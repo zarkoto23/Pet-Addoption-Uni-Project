@@ -7,8 +7,10 @@ import { useLike } from "./likesApi";
 
 const petsUrl = "http://localhost:3030/data/pets";
 
-export const usePets = () => {
+export const usePets = (filters) => {
   const [pets, setPets] = useState([]);
+  console.log(filters);
+  
 
   useEffect(() => {
     requester

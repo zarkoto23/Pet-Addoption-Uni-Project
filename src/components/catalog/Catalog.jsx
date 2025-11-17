@@ -1,15 +1,28 @@
+import { useState } from "react";
 import { usePets } from "../../api/petsApi";
 import { useCarousel } from "../../contexts/CarouselContext";
 import Loading from "../static-components/Loading";
+import CatalogFilters from "./CatalogFilters";
 import CatalogItem from "./CatalogItem";
 
 export default function Catalog() {
-  const { pets } = usePets();
+  const [filters, setFilters]=useState({})
+  const { pets } = usePets(filters);
   const { startIdx, setStartIdx } = useCarousel();
   const { isReturningFromDetails,  } = useCarousel();
 
-  const visibleCount = 4;
 
+  
+  const handleFilterChange = (updater) => {
+    setFilters(prev => {
+      const updated = updater(prev);
+      return updated;
+    });
+    
+  };
+
+
+  const visibleCount = 4;
   const handleNext = () => {
     if (startIdx < pets.length - visibleCount) {
       setStartIdx((prev) => prev + 1);
@@ -29,6 +42,7 @@ export default function Catalog() {
         (!isReturningFromDetails ? "fade-in-up" : "")
       }
     >
+      <CatalogFilters onChange={handleFilterChange}/>
       <div className=" flex gap-4 overflow-hidden bg-gradient-to-r from-indigo-500/50 via-purple-300/50 to-pink-300/50 p-10 rounded-2xl shadow-2xl">
         {visiblePets.map((pet) => {
           return <CatalogItem key={pet._id} pet={pet} />;

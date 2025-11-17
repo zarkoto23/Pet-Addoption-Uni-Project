@@ -31,7 +31,6 @@ export default function Create() {
     const result = await create(data);
     setDisabled(false)
     navigate(`/catalog/details/${result?._id}`);
-  console.log('submit');
   
 
   };

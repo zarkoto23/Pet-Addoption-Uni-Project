@@ -1,6 +1,5 @@
 export default function Loading() {
 
-console.log('loagind...');
 
   return(
      <div className="flex justify-center items-center h-screen">
