@@ -9,19 +9,44 @@ const petsUrl = "http://localhost:3030/data/pets";
 
 export const usePets = (filters) => {
   const [pets, setPets] = useState([]);
-  console.log(filters);
-  
+  const [loading, setLoading]=useState(false)
 
   useEffect(() => {
-    requester
-      .get(`${petsUrl}?sortBy=_createdOn%20desc`)
-      .then(setPets)
-      .catch((err) => {
-        toast.error(err.message || "Something went wrong!");
-      });
-  }, []);
+    setLoading(true)
 
-  return { pets };
+  const cleaned = Object.fromEntries(
+    Object.entries(filters || {}).filter(([_, v]) => v !== "")
+  );
+
+  const hasFilters = Object.keys(cleaned).length > 0;
+
+  let url = `${petsUrl}?sortBy=_createdOn desc`;
+
+  if (hasFilters) {
+    const where = Object.entries(cleaned)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(" AND ");
+
+    const encoded = encodeURIComponent(where);
+
+    url = `${petsUrl}?where=${encoded}`;
+  }
+
+
+  requester
+    .get(url)
+    .then(data=>{
+      setPets(data)
+    setLoading(false)
+    }
+    )
+    .catch(err => toast.error(err.message));
+
+    
+  }, [filters]);
+  
+
+  return { pets ,loading };
 };
 
 export const usePet = (petId) => {

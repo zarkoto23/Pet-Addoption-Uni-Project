@@ -1,4 +1,4 @@
-export default function CatalogFilters({onChange}) {
+export default function CatalogFilters({onChange,filters}) {
 
     const handleChange=(e)=>{
       const value=e.target.value
@@ -27,7 +27,8 @@ export default function CatalogFilters({onChange}) {
         </label>
 
         <select
-        name="spicies"
+         value={filters.category || ""} 
+        name="category"
         onChange={handleChange}
           className="w-48 p-3 rounded-xl bg-white/80 backdrop-blur-md
                      border border-indigo-200 shadow-md
@@ -49,6 +50,8 @@ export default function CatalogFilters({onChange}) {
         </label>
 
         <select
+         value={filters.gender || ""} 
+
         name="gender"
         onChange={handleChange}
           className="w-48 p-3 rounded-xl bg-white/80 backdrop-blur-md

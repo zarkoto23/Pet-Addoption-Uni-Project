@@ -4,23 +4,21 @@ import { useCarousel } from "../../contexts/CarouselContext";
 import Loading from "../static-components/Loading";
 import CatalogFilters from "./CatalogFilters";
 import CatalogItem from "./CatalogItem";
+import NoDataToShowYet from "../static-components/NoDataToShow";
 
 export default function Catalog() {
-  const [filters, setFilters]=useState({})
-  const { pets } = usePets(filters);
+  const [filters, setFilters] = useState({});
+  const { pets,loading } = usePets(filters);
   const { startIdx, setStartIdx } = useCarousel();
-  const { isReturningFromDetails,  } = useCarousel();
+  const { isReturningFromDetails } = useCarousel();
 
-
-  
   const handleFilterChange = (updater) => {
-    setFilters(prev => {
+    setFilters((prev) => {
       const updated = updater(prev);
+      setStartIdx(0)
       return updated;
     });
-    
   };
-
 
   const visibleCount = 4;
   const handleNext = () => {
@@ -35,18 +33,32 @@ export default function Catalog() {
     }
   };
   const visiblePets = pets.slice(startIdx, startIdx + visibleCount);
-  return pets && pets.length > 0 ? (
-    <div
-      className={
-        `fixed backdrop-blur-xs bottom-90 inset-x-0 w-full max-w-6xl mx-auto z-50 ` +
-        (!isReturningFromDetails ? "fade-in-up" : "")
+
+if (loading) {
+  return <Loading />;
+}
+
+return (
+  <div
+    className={
+      `fixed backdrop-blur-xs bottom-90 inset-x-0 w-full max-w-6xl mx-auto z-50 ` +
+      (!isReturningFromDetails ? "fade-in-up" : "")
+    }
+  >
+    <CatalogFilters onChange={handleFilterChange} filters={filters}/>
+
+    <div className="flex gap-4 overflow-hidden bg-gradient-to-r from-indigo-500/50 via-purple-300/50 to-pink-300/50 p-10 rounded-2xl shadow-2xl">
+      {
+        visiblePets.length > 0
+          ? visiblePets.map((pet) => (
+              <CatalogItem key={pet._id} pet={pet} />
+            ))
+          : <NoDataToShowYet />
       }
-    >
-      <CatalogFilters onChange={handleFilterChange}/>
-      <div className=" flex gap-4 overflow-hidden bg-gradient-to-r from-indigo-500/50 via-purple-300/50 to-pink-300/50 p-10 rounded-2xl shadow-2xl">
-        {visiblePets.map((pet) => {
-          return <CatalogItem key={pet._id} pet={pet} />;
-        })}
+
+
+
+
       </div>
 
       <button
@@ -62,7 +74,6 @@ export default function Catalog() {
         ›
       </button>
     </div>
-  ) : (
-   <Loading/>
-  );
+  )
+  
 }
