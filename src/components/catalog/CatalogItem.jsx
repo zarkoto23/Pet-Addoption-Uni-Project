@@ -18,7 +18,7 @@ export default function CatalogItem({ pet }) {
   animate={{ opacity: 1, scale: 1, y: 0 }}
   exit={{ opacity: 0, scale: 0.9, y: -10 }}
   transition={{
-    duration: 0.5,
+    duration: 0.8,
     ease: "easeOut"
   }}
 
