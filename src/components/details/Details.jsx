@@ -1,6 +1,13 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { usePet, useDelete } from "../../api/petsApi";
-import { useContext, useEffect, useState } from "react";
+import {
+  startTransition,
+  useContext,
+  useEffect,
+  useOptimistic,
+  useRef,
+  useState,
+} from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useLike } from "../../api/likesApi";
 import { useCarousel } from "../../contexts/CarouselContext";
@@ -20,16 +27,28 @@ export default function Details() {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
 
+  const optimRef = useRef();
+  const [optim, setOptim] = useOptimistic(
+    optimRef.current,
+    (current) => current + 1
+  );
+
   const isOwner = _id === pet._ownerId;
 
   useEffect(() => {
     getPetLikes(petId).then((result) => {
       setLikes(result.length);
       setIsLiked(result.some((like) => like._ownerId === _id));
+      optimRef.current = result.length;
     });
   }, [petId, getPetLikes, _id]);
 
   const onLikeHandler = async () => {
+    startTransition(() => {
+      isLiked ? (optimRef.current -= 1) : (optimRef.current += 1);
+      setOptim();
+    });
+
     const action = await like(_id, petId);
 
     if (action === "added") {
@@ -59,7 +78,7 @@ export default function Details() {
     navigate("/edit", { state: { pet } });
   };
 
-  const onDeleteHandler = async() => {
+  const onDeleteHandler = async () => {
     const conf = confirm("Sure you want to delete this?");
     if (!conf) {
       return;
@@ -69,7 +88,7 @@ export default function Details() {
       navigate("/catalog");
     } else if (location.state?.from === "profile") {
       navigate("/profile");
-    }  else {
+    } else {
       navigate("/catalog");
     }
   };
@@ -156,7 +175,7 @@ export default function Details() {
             <div className="grid grid-cols-2  gap-8 text-gray-700 mt-8">
               <div>
                 <p className="font-semibold text-gray-800 mb-2">Likes:</p>
-                <p className="text-indigo-600">{likes}</p>
+                <p className="text-indigo-600">{optim}</p>
               </div>
             </div>
           </div>
@@ -186,7 +205,7 @@ export default function Details() {
                         stroke="currentColor"
                         className={`w-18 h-18 cursor-pointer transition-all hover:scale-110 fill-gray-700 hover:stroke-gray-700 
    ${
-     isLiked
+     isLikedO
        ? "stroke-red-600 fill-red-600 hover:stroke-red-600"
        : "stroke-gray-700 hover:stroke-gray-700"
    }`}

@@ -29,7 +29,7 @@ export default function Footer() {
 
         <li>
           <NavLink
-            to="/contact"
+            to="/contacts"
             className={({ isActive }) =>
               `relative group pb-1 ${isActive ? "text-yellow-300" : ""}`
             }
