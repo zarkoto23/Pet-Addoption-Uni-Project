@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Create() {
-  const [disabled, setDisabled]=useState(false)
+  const [disabled, setDisabled] = useState(false);
   const { create } = useCreate();
   const navigate = useNavigate();
 
   const submitCreate = async (e) => {
     e.preventDefault();
-    setDisabled(true)
+    setDisabled(true);
     const formData = new FormData(e.currentTarget);
     let data = Object.fromEntries(formData);
 
@@ -23,16 +23,14 @@ export default function Create() {
     );
 
     if (hasEmptyFields || !data.gender || !data.castrated) {
-      setDisabled(false)
+      setDisabled(false);
       toast.error("All fields must be filled!");
       return;
     }
 
     const result = await create(data);
-    setDisabled(false)
+    setDisabled(false);
     navigate(`/catalog/details/${result?._id}`);
-  
-
   };
 
   // const onCloseCreate=()=>{
@@ -45,8 +43,8 @@ export default function Create() {
         onSubmit={submitCreate}
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
-        <div  className="grid grid-cols-1 md:grid-cols-2 gap-6">
-           {/* <button 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* <button 
            type="button" 
            onClick={onCloseCreate} 
            className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10" 

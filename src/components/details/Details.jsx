@@ -8,8 +8,6 @@ import Loading from "../static-components/Loading";
 import { useTransition } from "react";
 
 export default function Details() {
-  console.log("render");
-
   const { setIsReturningFromDetails } = useCarousel();
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
@@ -217,7 +215,9 @@ export default function Details() {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        className={`w-18 h-18 cursor-pointer ${load?"": "transition-all hover:scale-110  "} "fill-gray-700 hover:stroke-gray-700"
+                        className={`w-18 h-18 cursor-pointer ${
+                          load ? "" : "transition-all hover:scale-110  "
+                        } "fill-gray-700 hover:stroke-gray-700"
    ${
      isLikedO
        ? "stroke-red-600 fill-red-600 hover:stroke-red-600"

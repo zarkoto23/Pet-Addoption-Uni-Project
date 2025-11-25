@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../../api/authApi";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { toast } from "react-toastify";
 
@@ -10,13 +10,14 @@ export default function Login() {
 
   const { login } = useLogin();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const loginHandler = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
 
     try {
-      const authData = await login(data.email, data.password);
+      const authData = await login(email, password);
 
       userLoginHandler(authData);
       toast.success("You are Logged in!");
@@ -36,6 +37,8 @@ export default function Login() {
       <div className="w-full ">
         <p>Email</p>
         <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="write yout email"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="email"
@@ -46,6 +49,8 @@ export default function Login() {
       <div className="w-full ">
         <p>Password</p>
         <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="write your password"
           className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-300 bg-white text-black"
           type="password"

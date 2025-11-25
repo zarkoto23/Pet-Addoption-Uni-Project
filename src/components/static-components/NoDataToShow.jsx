@@ -8,7 +8,7 @@ export default function NoDataToShowYet() {
    mb-25
 "
     >
-      Have not Pets here!
+      Have no Pets here yet!
     </p>
   );
 }

@@ -6,14 +6,12 @@ import { useNavigate } from "react-router-dom";
 const baseUsrUrl = "http://localhost:3030/users";
 
 export const useLogin = () => {
-  const navigate = useNavigate();
 
   const login = async (email, password) => {
     const result = await requester.post(`${baseUsrUrl}/login`, {
       email,
       password,
     });
-    navigate("/");
     return result;
   };
 
@@ -21,7 +19,6 @@ export const useLogin = () => {
 };
 
 export const useRegister = () => {
-  const navigate = useNavigate();
 
   const register = async (email, password) => {
     const result = await requester.post(`${baseUsrUrl}/register`, {
@@ -29,7 +26,6 @@ export const useRegister = () => {
       password,
     });
 
-    navigate("/");
 
     return result;
   };
