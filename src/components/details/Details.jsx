@@ -1,24 +1,24 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { usePet, useDelete } from "../../api/petsApi";
-import {
-  startTransition,
-  useContext,
-  useEffect,
-  useOptimistic,
-  useRef,
-  useState,
-} from "react";
+import { useContext, useEffect, useOptimistic, useRef, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useLike } from "../../api/likesApi";
 import { useCarousel } from "../../contexts/CarouselContext";
 import Loading from "../static-components/Loading";
+import { useTransition } from "react";
 
 export default function Details() {
+  console.log("render");
+
   const { setIsReturningFromDetails } = useCarousel();
   const { accessToken, _id } = useContext(UserContext);
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [, startTransition] = useTransition();
+
+  const [load, setLoad] = useState(false);
 
   const { del } = useDelete();
   const { like, getPetLikes } = useLike();
@@ -28,9 +28,16 @@ export default function Details() {
   const [likes, setLikes] = useState(0);
 
   const optimRef = useRef();
+
+  const isRef = useRef(isLiked);
+
   const [optim, setOptim] = useOptimistic(
     optimRef.current,
     (current) => current + 1
+  );
+  const [isLikedO, setIsLikedO] = useOptimistic(
+    isRef.current,
+    (oldValue) => !oldValue
   );
 
   const isOwner = _id === pet._ownerId;
@@ -40,16 +47,22 @@ export default function Details() {
       setLikes(result.length);
       setIsLiked(result.some((like) => like._ownerId === _id));
       optimRef.current = result.length;
+      isRef.current = result.some((like) => like._ownerId === _id);
     });
   }, [petId, getPetLikes, _id]);
 
   const onLikeHandler = async () => {
     startTransition(() => {
+      isRef.current = !isRef.current;
       isLiked ? (optimRef.current -= 1) : (optimRef.current += 1);
-      setOptim();
+      setOptim(isRef.current);
+
+      console.log(isLikedO);
     });
 
+    setLoad((prev) => !prev);
     const action = await like(_id, petId);
+    setLoad((prev) => !prev);
 
     if (action === "added") {
       setLikes((prev) => prev + 1);
@@ -195,6 +208,7 @@ export default function Details() {
                   <div className="flex items-center mr-28 ">
                     <button
                       onClick={onLikeHandler}
+                      disabled={load}
                       className=" mr-18 bg-transparent border-none"
                     >
                       <svg
@@ -203,7 +217,7 @@ export default function Details() {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        className={`w-18 h-18 cursor-pointer transition-all hover:scale-110 fill-gray-700 hover:stroke-gray-700 
+                        className={`w-18 h-18 cursor-pointer ${load?"": "transition-all hover:scale-110  "} "fill-gray-700 hover:stroke-gray-700"
    ${
      isLikedO
        ? "stroke-red-600 fill-red-600 hover:stroke-red-600"
