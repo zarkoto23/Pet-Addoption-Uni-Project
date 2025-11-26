@@ -6,7 +6,7 @@
 - [Overview](#-overview)
 - [Architecture](#-application-architecture)
 - [Technologies](#-technologies-used)
-- [Features](#-features)
+- [Features](#features)
 - [API Endpoints](#-api-endpoints)
 - [How to Use](#-how-to-use)
 
