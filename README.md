@@ -59,7 +59,7 @@ The app follows a clean and modular SPA structure using:
   - `likes` collection for like functionality
 
 ---
-
+<a id="features"></a>
 ## ⚙️ Features
 
 ### 📄 CRUD Operations
