@@ -1,6 +1,15 @@
 ![React](https://img.shields.io/badge/React-000000?style=flat&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-000000?style=flat&logo=tailwindcss&logoColor=06B6D4)
 
+## 📑 Contents
+
+- [Overview](#overview)
+- [Architecture](#application-architecture)
+- [Technologies](#technologies-used)
+- [Features](#features)
+- [API Endpoints](#api-endpoints)
+- [How to Use](#how-to-use)
+
 # Adopt a Paw – Pet Adoption
 
 React Single-Page Application
@@ -98,3 +107,24 @@ The app follows a clean and modular SPA structure using:
 
 The full list of used API endpoints can be found in the official SoftUni Practice Server documentation:  
 https://github.com/softuni-practice-server/softuni-practice-server/blob/master/README.md
+
+## 📦 How to Use
+
+### Client
+
+```
+git clone <repo-url>
+cd <path-to-local-repo>
+npm install
+npm start
+```
+
+- Next open the application in your browser:
+  http://localhost:5173
+
+### Server
+
+- For how to start server read this
+  https://github.com/softuni-practice-server/softuni-practice-server/blob/master/README.md#usage
+
+---
