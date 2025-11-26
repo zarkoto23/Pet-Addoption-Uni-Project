@@ -8,21 +8,22 @@ export default function Header() {
   const { accessToken, email } = useContext(UserContext);
 
   return (
-    <header className="
+    <header
+      className="
       fixed 
       top-0 left-0 
       w-full 
-      h-[90px]              /* ФИКСИРАНА ВИСОЧИНА */
-      z-50 
+      h-[90px]
+      z-50
       backdrop-blur-xs 
       bg-gradient-to-r from-indigo-500/50 via-purple-400/50 to-indigo-400/50
-      flex items-center     /* Центрира съдържанието вертикално */
+      flex items-center
       px-8
-    ">
-      <div className="w-full flex items-center justify-between">
-
-        {/* Лого + Логнат email */}
-        <div className="flex items-center gap-6">
+    "
+    >
+      <div className="w-full flex items-center justify-center gap-56">
+        {/* LEFT GROUP */}
+        <div className="flex items-center gap-4 min-w-[340px]">
           <NavLink to={"/"}>
             <img
               src="icon.png"
@@ -31,19 +32,20 @@ export default function Header() {
           </NavLink>
 
           {accessToken && (
-            <p className="text-xl flex items-center gap-2">
-              Logged in as:
+            <div className="flex flex-col text-xl leading-tight">
+              <span className="text-gray-100">Logged as:</span>
+
               <NavLink to={"/profile"}>
                 <span className="text-yellow font-semibold underline">
                   {email}
                 </span>
               </NavLink>
-            </p>
+            </div>
           )}
         </div>
 
-        {/* Навигация */}
-        <ul className="flex items-center gap-12 text-xl font-semibold">
+        {/* RIGHT GROUP */}
+        <ul className="flex items-center gap-10 text-xl font-semibold pt-10">
           <NavLink
             to={"/"}
             className={({ isActive }) =>
@@ -118,7 +120,6 @@ export default function Header() {
             </>
           )}
         </ul>
-
       </div>
     </header>
   );

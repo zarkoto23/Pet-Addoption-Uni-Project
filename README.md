@@ -1,12 +1,100 @@
-# React + Vite
+![React](https://img.shields.io/badge/React-000000?style=flat&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-000000?style=flat&logo=tailwindcss&logoColor=06B6D4)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Adopt a Paw – Pet Adoption
 
-Currently, two official plugins are available:
+React Single-Page Application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Overview
 
-## Expanding the ESLint configuration
+Adopt a Paw is a React application that allows users to browse, like, and manage pet adoption listings.  
+The project is built as part of learning modern React, SPA architecture, data flow, authentication, and integration with an external API.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧱 Application Architecture
+
+The app follows a clean and modular SPA structure using:
+
+- **Component-based structure** – reusable UI components
+- **Context API** – for authentication and shared user data
+- **Service layer** – separate modules for API communication
+- **Custom hooks** – reusable logic for forms, fetching, and etc
+- **React Router + route guards** – protected, guest-only and owner-only routes
+
+---
+
+## 🛠 Technologies Used
+
+### **Frontend**
+
+- **React**
+- **React Router** (client-side routing)
+- **Context API** (global auth state)
+- **React Hooks** (useContext, useOptimistic, useRef, useTransition and etc)
+- **Custom Hooks** (forms, API, auth)
+- **Other**
+  - Fetch API
+  - Tailwind CSS
+  - Bound Forms (controlled components)
+  - Client-Side Validation
+  - Error Handling
+  - Route Guards (user, guest, owner restrictions)
+
+### **Backend**
+
+- **SoftUni Practice Server**
+  - Query support for filtering
+  - Authentication (login, register, logout)
+  - CRUD operations for `pets`
+  - `likes` collection for like functionality
+
+---
+
+## ⚙️ Features
+
+### 📄 CRUD Operations
+
+- Create pet listings
+- Edit own listings
+- Delete own listings
+- View personal listings
+
+### 👤 Authentication
+
+- Register
+- Login
+- Logout
+- Persistent user session
+
+### 🛡 Validation & Error Handling
+
+- Client-side form validation
+- API-level error handling
+- UI error messages
+
+### 🔐 Route Protections
+
+- Guest routes: login, register
+- User routes: create, like
+- Owner routes: edit, delete
+- Automatic redirects for unauthorized access
+
+### 🐶 Pet Listings
+
+- View all pets
+- Detailed pet page
+- Filtering options
+- Like (❤️) pets — available only for logged-in users
+- View total likes
+
+### ⚡ Optimistic UI
+
+- Likes update instantly and sync with the server in the background
+
+---
+
+## 🌐 API Endpoints
+
+The full list of used API endpoints can be found in the official SoftUni Practice Server documentation:  
+https://github.com/softuni-practice-server/softuni-practice-server/blob/master/README.md

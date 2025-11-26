@@ -9,19 +9,16 @@ export default function Register() {
   const nav = useNavigate();
   const { register } = useRegister();
 
-  // FORM STATE
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // ERROR STATE
   const [errs, setErrs] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  // VALIDATION FUNCTIONS
   const validateEmail = (email) => {
     if (!email.includes("@")) return "Email must contain @.";
     const parts = email.split("@");
@@ -41,33 +38,27 @@ export default function Register() {
     return "";
   };
 
-  // HANDLE BLUR VALIDATION
   const handleBlur = (field) => {
     let newErrs = { ...errs };
 
     if (field === "email") {
       newErrs.email = validateEmail(email);
-      // if (newErrs.email) toast.error(newErrs.email);
     }
 
     if (field === "password") {
       newErrs.password = validatePassword(password);
-      // if (newErrs.password) toast.error(newErrs.password);
     }
 
     if (field === "confirmPassword") {
       newErrs.confirmPassword = validateConfirm(password, confirmPassword);
-      // if (newErrs.confirmPassword) toast.error(newErrs.confirmPassword);
     }
 
     setErrs(newErrs);
   };
 
-  // SUBMIT HANDLER
   const registerHandler = async (e) => {
     e.preventDefault();
 
-    // Final validation before submit
     const emailErr = validateEmail(email);
     const passErr = validatePassword(password);
     const confirmErr = validateConfirm(password, confirmPassword);
@@ -95,7 +86,6 @@ export default function Register() {
       onSubmit={registerHandler}
       className="fixed top-50 left-1/2 backdrop-blur-xs transform -translate-x-1/2 flex flex-col gap-4 items-start p-8 w-80 sm:w-[352px] text-white/50 rounded-2xl shadow-xl border border-white-200 bg-gradient fade-in-up"
     >
-      {/* EMAIL */}
       <div className="w-full">
         <p>Email</p>
         <input
@@ -112,7 +102,6 @@ export default function Register() {
         )}
       </div>
 
-      {/* PASSWORD */}
       <div className="w-full">
         <p>Password</p>
         <input
@@ -129,7 +118,6 @@ export default function Register() {
         )}
       </div>
 
-      {/* CONFIRM PASSWORD */}
       <div className="w-full">
         <p>Confirm Password</p>
         <input
