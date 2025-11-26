@@ -3,12 +3,12 @@
 
 ## 📑 Contents
 
-- [Overview](#overview)
-- [Architecture](#application-architecture)
-- [Technologies](#technologies-used)
-- [Features](#features)
-- [API Endpoints](#api-endpoints)
-- [How to Use](#how-to-use)
+- [Overview](#-overview)
+- [Architecture](#-application-architecture)
+- [Technologies](#-technologies-used)
+- [Features](#-features)
+- [API Endpoints](#-api-endpoints)
+- [How to Use](#-how-to-use)
 
 # Adopt a Paw – Pet Adoption
 
