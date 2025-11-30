@@ -123,7 +123,7 @@ export const useMyLikedPets = () => {
       // 2️⃣ За всеки like → fetch-ваме pet по petId
       const pets = await Promise.all(
         likes.map((like) =>
-          requester.get(`${petsUrl}/${like.petId}`)
+          requester.get(`${import.meta.env.VITE_APP_SERVER_URL}/data/${like.petId}`)
         )
       );
 
