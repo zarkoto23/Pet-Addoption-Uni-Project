@@ -1,6 +1,8 @@
 ![React](https://img.shields.io/badge/React-000000?style=flat&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-000000?style=flat&logo=tailwindcss&logoColor=06B6D4)
 
+---
+
 🎯 **Live Demo -** https://adopt-a-paw-479812.web.app
 
 🔐 **Test Account:**  
