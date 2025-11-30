@@ -20,8 +20,8 @@ import Edit from "./components/edit/Edit";
 import CarouselProvider from "./components/providers/CarouselProvider";
 
 
-// console.log(import.meta.env.MODE);
-// console.log(import.meta.env.VITE_APP_SERVER_URL);
+console.log(import.meta.env.MODE);
+console.log(import.meta.env.VITE_APP_SERVER_URL);
 
 
 

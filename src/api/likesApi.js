@@ -3,7 +3,7 @@ import { useUserContext } from "../contexts/UserContext";
 import requester from "../utils/requester";
 import { useCallback } from "react";
 
-const baseLikeUrl = `${import.meta.env.VITE_APP_SERVER_URL}/likes`
+const baseLikeUrl = `${import.meta.env.VITE_APP_SERVER_URL}/data/likes`
 
 export const useLike = () => {
   const { accessToken } = useUserContext();
