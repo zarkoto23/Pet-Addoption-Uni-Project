@@ -121,7 +121,7 @@ export const useMyLikedPets = () => {
 
       const pets = await Promise.all(
         likes.map((like) =>
-          requester.get(`${import.meta.env.VITE_APP_SERVER_URL}/data/likes${like.petId}`)
+          requester.get(`${petsUrl}/${like.petId}`)
         )
       );
 
