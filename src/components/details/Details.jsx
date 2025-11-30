@@ -55,7 +55,6 @@ export default function Details() {
       isLiked ? (optimRef.current -= 1) : (optimRef.current += 1);
       setOptim(isRef.current);
 
-      console.log(isLikedO);
     });
 
     setLoad((prev) => !prev);
