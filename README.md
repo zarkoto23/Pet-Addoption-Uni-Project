@@ -14,6 +14,12 @@
 
 React Single-Page Application
 
+🎯 **Live Demo:** https://adopt-a-paw-479812.web.app
+
+🔐 **Test Account:**  
+- Email: peter@abv.bg
+- Password: 123456
+
 ## 📌 Overview
 
 Adopt a Paw is a React application that allows users to browse, like, and manage pet adoption listings.  
