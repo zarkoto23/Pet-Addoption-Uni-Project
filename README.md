@@ -19,6 +19,8 @@ React Single-Page Application
 Adopt a Paw is a React application that allows users to browse, like, and manage pet adoption listings.  
 The project is built as part of learning modern React, SPA architecture, data flow, authentication, and integration with an external API.
 
+> ⚠️ Note: The current UI is desktop-only and may not display correctly on mobile devices.
+
 ---
 
 ## 🧱 Application Architecture
