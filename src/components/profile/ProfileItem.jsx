@@ -18,13 +18,11 @@ export default function ProfileItem({ pet }) {
         overflow-hidden 
         cursor-pointer
         fade-in-up
-
-        /* ЕФЕКТ СЕГА Е ТУК (както искаш) */
         transition-all
         duration-500
         hover:-translate-y-6 
         hover:shadow-xl
-        hover:bg-white/80     /* <— ТУК Е hover ефекта */
+        hover:bg-white/80 
       "
     >
       <img

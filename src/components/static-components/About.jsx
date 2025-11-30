@@ -2,8 +2,6 @@ export default function About() {
   return (
     <div className="fixed top-40 left-1/2 transform -translate-x-1/2 flex-col items-center justify-start p-4">
       <div className="text-center mb-6 max-w-3xl">
-
-        {/* Title */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
           <div className="overflow-hidden mb-3">
             <div
@@ -28,7 +26,6 @@ export default function About() {
           </div>
         </h1>
 
-        {/* Description */}
         <p
           style={{ animation: "fadeInUp 0.8s ease-out 0.8s forwards" }}
           className="text-lg text-gray-600 mb-8 opacity-0 max-w-xl mx-auto leading-relaxed"
@@ -38,7 +35,6 @@ export default function About() {
           chance to be cared for, understood, and cherished.
         </p>
 
-        {/* Info Box */}
         <div
           style={{ animation: "fadeInUp 0.8s ease-out 1s forwards" }}
           className="opacity-0 bg-white/60 backdrop-blur-md shadow-lg p-5 rounded-xl max-w-lg mx-auto border border-indigo-100 text-left"

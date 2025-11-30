@@ -9,7 +9,6 @@ import Home from "./components/static-components/Home";
 import Contact from "./components/static-components/Contacts";
 import About from "./components/static-components/About";
 import Volunteer from "./components/static-components/Volunteer";
-import NotFound from "./components/static-components/NotFound";
 import Catalog from "./components/catalog/Catalog";
 import Create from "./components/create/Create";
 import UserProvider from "./components/providers/UserProvider";
@@ -23,59 +22,53 @@ import CarouselProvider from "./components/providers/CarouselProvider";
 export default function App() {
   return (
     <UserProvider>
-  <div className="min-h-screen flex flex-col relative">
+      <div className="min-h-screen flex flex-col relative">
+        <div className="background"></div>
 
-    {/* Background */}
-    <div className="background"></div>
+        <Header />
 
-    {/* Header - fixed */}
-    <Header />
+        <main className="flex-1 flex flex-col">
+          <Routes>
+            <Route index element={<Home />} />
 
-    {/* Content zone */}
-    <main className="flex-1 flex flex-col">
-      <Routes>
-        <Route index element={<Home />} />
+            <Route element={<CarouselProvider />}>
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/catalog/details/:petId" element={<Details />} />
+            </Route>
 
-        <Route element={<CarouselProvider />}>
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/catalog/details/:petId" element={<Details />} />
-        </Route>
+            <Route element={<GuestGuard />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
 
-        <Route element={<GuestGuard />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+            <Route element={<AuthGuard />}>
+              <Route path="/create" element={<Create />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/edit" element={<Edit />} />
+            </Route>
 
-        <Route element={<AuthGuard />}>
-          <Route path="/create" element={<Create />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/edit" element={<Edit />} />
-        </Route>
+            <Route path="/contacts" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/volunteer" element={<Volunteer />} />
+          </Routes>
+        </main>
 
-        <Route path="/contacts" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/volunteer" element={<Volunteer />} />
-      </Routes>
-    </main>
+        <Footer />
 
-    {/* Footer - sticky automatically */}
-    <Footer />
-
-    <ToastContainer
-      position="top-center"
-      autoClose={1500}
-      hideProgressBar
-      newestOnTop={false}
-      closeOnClick={false}
-      rtl={false}
-      pauseOnFocusLoss={false}
-      draggable={false}
-      pauseOnHover
-      theme="light"
-      transition={Flip}
-    />
-  </div>
-</UserProvider>
-
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover
+          theme="light"
+          transition={Flip}
+        />
+      </div>
+    </UserProvider>
   );
 }

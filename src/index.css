@@ -46,7 +46,8 @@ body {
   background-image: url('11.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center 300px; /* Премества САМО изображението надолу */
+  background-position: center 300px;
+  /* Премества САМО изображението надолу */
   z-index: -1;
   pointer-events: none;
 }
@@ -61,7 +62,8 @@ body {
   margin-top: 100px;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -72,6 +74,7 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
 /* ---------- Toast ---------- */
 .toast-animation {
   position: fixed;
@@ -88,6 +91,7 @@ html, body {
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -99,6 +103,7 @@ html, body {
     transform: translateX(-100px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -110,6 +115,7 @@ html, body {
     transform: translateX(100px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -117,8 +123,13 @@ html, body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
@@ -130,12 +141,10 @@ html, body {
 }
 
 .bg-gradient {
-  background: linear-gradient(
-    to right,
-    rgba(99, 102, 241, 0.5),
-    rgba(196, 181, 253, 0.5),
-    rgba(249, 168, 212, 0.5)
-  );
+  background: linear-gradient(to right,
+      rgba(99, 102, 241, 0.5),
+      rgba(196, 181, 253, 0.5),
+      rgba(249, 168, 212, 0.5));
 }
 
 /* ---------- Carousel ---------- */
@@ -152,11 +161,25 @@ html, body {
 }
 
 
-.carousel-step-0 { transform: translateX(0%); }
-.carousel-step-1 { transform: translateX(-25%); }
-.carousel-step-2 { transform: translateX(-50%); }
-.carousel-step-3 { transform: translateX(-75%); }
-.carousel-step-4 { transform: translateX(-100%); }
+.carousel-step-0 {
+  transform: translateX(0%);
+}
+
+.carousel-step-1 {
+  transform: translateX(-25%);
+}
+
+.carousel-step-2 {
+  transform: translateX(-50%);
+}
+
+.carousel-step-3 {
+  transform: translateX(-75%);
+}
+
+.carousel-step-4 {
+  transform: translateX(-100%);
+}
 
 /* ---------- Loader ---------- */
 .loader {
@@ -171,7 +194,9 @@ html, body {
 }
 
 @keyframes mulShdSpin {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow:
       0em -2.6em 0em 0em #ffffff,
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
@@ -254,7 +279,5 @@ html, body {
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
       -2.6em 0em 0 0em #ffffff,
       -1.8em -1.8em
-
   }
 }
-

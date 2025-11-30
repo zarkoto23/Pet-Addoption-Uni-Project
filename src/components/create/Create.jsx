@@ -33,10 +33,6 @@ export default function Create() {
     navigate(`/catalog/details/${result?._id}`);
   };
 
-  // const onCloseCreate=()=>{
-  //   navigate(-1)
-  // }
-
   return (
     <div className="fixed  left-1/2  transform -translate-x-1/2 flex-col items-center justify-start pt-36">
       <form
@@ -44,14 +40,6 @@ export default function Create() {
         className="opacity-0 bg-gradient backdrop-blur-xs border border-white/50 rounded-2xl shadow-2xl p-8 w-full max-w-2xl space-y-6 fade-in-up"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* <button 
-           type="button" 
-           onClick={onCloseCreate} 
-           className="absolute top-4 right-4 bg-white/30 backdrop-blur-md text-black font-bold text-xl w-10 h-10 rounded-full shadow-md hover:bg-indigo-100/60 hover:text-indigo-700 transition-all duration-300 flex items-center justify-center z-10" 
-           aria-label="Close details" 
-         > 
-           ✕ 
-         </button>  */}
           <div className="col-span-1">
             <label className="block text-gray-700 font-semibold mb-2">
               Name:

@@ -1,35 +1,24 @@
-export default function CatalogFilters({onChange,filters}) {
+export default function CatalogFilters({ onChange, filters }) {
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const field = e.target.name;
 
-    const handleChange=(e)=>{
-      const value=e.target.value
-      const field=e.target.name
-
-
-        onChange(prev=>({
-          ...prev,
-          [field]:value
-        }))
-
-
-      }
-    
-
-  
-
-
+    onChange((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
   return (
     <div className="w-full max-w-6xl mx-auto mb-6 px-4 flex gap-10 justify-center">
-
-      {/* Species */}
       <div className="flex items-center gap-4">
         <label className="text-gray-800 font-semibold text-sm tracking-wide">
           Species:
         </label>
 
         <select
-         value={filters.category || ""} 
-        name="category"
-        onChange={handleChange}
+          value={filters.category || ""}
+          name="category"
+          onChange={handleChange}
           className="w-48 p-3 rounded-xl bg-white/80 backdrop-blur-md
                      border border-indigo-200 shadow-md
                      text-gray-700
@@ -43,17 +32,15 @@ export default function CatalogFilters({onChange,filters}) {
         </select>
       </div>
 
-      {/* Gender */}
       <div className="flex items-center gap-4">
         <label className="text-gray-800 font-semibold text-sm tracking-wide">
           Gender:
         </label>
 
         <select
-         value={filters.gender || ""} 
-
-        name="gender"
-        onChange={handleChange}
+          value={filters.gender || ""}
+          name="gender"
+          onChange={handleChange}
           className="w-48 p-3 rounded-xl bg-white/80 backdrop-blur-md
                      border border-indigo-200 shadow-md
                      text-gray-700
@@ -65,7 +52,6 @@ export default function CatalogFilters({onChange,filters}) {
           <option value="female">Female</option>
         </select>
       </div>
-
     </div>
   );
 }

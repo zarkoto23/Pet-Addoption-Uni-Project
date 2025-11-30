@@ -9,26 +9,21 @@ export default function CatalogItem({ pet }) {
   };
 
   return (
-<motion.div
-  onClick={onDetailsClick}
-  className="flex-shrink-0 w-64 bg-white/30 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden cursor-pointer"
-
-  // --- CAROUSEL ANIMATION (500ms) ---
-  initial={{ opacity: 0, scale: 0.85, y: 20 }}
-  animate={{ opacity: 1, scale: 1, y: 0 }}
-  exit={{ opacity: 0, scale: 0.9, y: -10 }}
-  transition={{
-    duration: 0.8,
-    ease: "easeOut"
-  }}
-
-  // --- HOVER EFFECT (scale по-малък + lift) ---
-  whileHover={{
-    y: -15,            // леко вдигане нагоре (много приятно)
-    transition: { duration: 0.3, fade: "fade-in-up" }
-  }}
->
-
+    <motion.div
+      onClick={onDetailsClick}
+      className="flex-shrink-0 w-64 bg-white/30 backdrop-blur-xl rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+      initial={{ opacity: 0, scale: 0.85, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: -10 }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
+      whileHover={{
+        y: -15,
+        transition: { duration: 0.3, fade: "fade-in-up" },
+      }}
+    >
       <div className="transition duration-100 hover:bg-white/80">
         <img
           src={pet.imageUrl}

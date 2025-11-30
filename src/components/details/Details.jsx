@@ -54,7 +54,6 @@ export default function Details() {
       isRef.current = !isRef.current;
       isLiked ? (optimRef.current -= 1) : (optimRef.current += 1);
       setOptim(isRef.current);
-
     });
 
     setLoad((prev) => !prev);
@@ -196,7 +195,10 @@ export default function Details() {
                 Interested in adopting?
               </h3>
 
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1 px-12 mt-1 rounded-md transition-all shadow-lg hover:shadow-xl">
+              <button
+                onClick={() => navigate("/contacts")}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1 px-12 mt-1 rounded-md transition-all shadow-lg hover:shadow-xl"
+              >
                 Contact Us
               </button>
 

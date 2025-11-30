@@ -7,7 +7,7 @@ import ProfileItem from "./ProfileItem";
 import NoDataToShowYet from "../static-components/NoDataToShow";
 
 export default function Profile() {
-  const { email, _id } = useContext(UserContext);
+  const { email} = useContext(UserContext);
   const { likedPets, loading } = useMyLikedPets();
   const [likedOrYour, setLikedOrYour] = useState(true);
   const { myPets } = useMyPets();

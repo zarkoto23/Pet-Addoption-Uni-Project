@@ -37,7 +37,6 @@ export default function Home() {
           home they deserve
         </p>
 
-
         <Link
           to="/catalog"
           style={{

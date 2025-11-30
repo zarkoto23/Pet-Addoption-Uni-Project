@@ -2,7 +2,8 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="
+    <footer
+      className="
     mt-auto
       bg-gradient-to-r 
       from-indigo-500/50 
@@ -13,7 +14,8 @@ export default function Footer() {
       justify-center 
       items-center
       h-20
-    ">
+    "
+    >
       <ul className="flex gap-32 text-grey-500 mb-2">
         <li>
           <NavLink
