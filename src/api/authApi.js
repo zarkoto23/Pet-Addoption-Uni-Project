@@ -3,7 +3,7 @@ import { useUserContext } from "../contexts/UserContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const baseUsrUrl = "http://localhost:3030/users";
+const baseUsrUrl = `${import.meta.env.VITE_APP_SERVER_URL}/users`;
 
 export const useLogin = () => {
   const login = async (email, password) => {

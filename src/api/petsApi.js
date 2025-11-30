@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { useLike } from "./likesApi";
 
-const petsUrl = "http://localhost:3030/data/pets";
+const petsUrl =`${import.meta.env.VITE_APP_SERVER_URL}/data/pets`
 
 export const usePets = (filters) => {
   const [pets, setPets] = useState([]);
