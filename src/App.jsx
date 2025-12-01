@@ -19,12 +19,6 @@ import GuestGuard from "./components/guards/GuestGruard";
 import Edit from "./components/edit/Edit";
 import CarouselProvider from "./components/providers/CarouselProvider";
 
-
-console.log(import.meta.env.MODE);
-console.log(import.meta.env.VITE_APP_SERVER_URL);
-
-
-
 export default function App() {
   return (
     <UserProvider>
